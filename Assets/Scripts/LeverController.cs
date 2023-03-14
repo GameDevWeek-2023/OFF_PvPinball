@@ -11,11 +11,11 @@ public class LeverController : MonoBehaviour
     public float rotationAngle = 45;
     public float force = 10;
 
-    public Transform flipperLeft;
-    public Transform flipperRight;
+    public Transform flipperLeft, flipperLeft_L2;
+    public Transform flipperRight, flipperRight_L2;
 
-    public Rigidbody rigLeft;
-    public Rigidbody rigRight;
+    public Rigidbody rigLeft, rigLeft_L2;
+    public Rigidbody rigRight, rigRight_L2;
     
     private Coroutine rotationCoroutineLeft;
     private Coroutine rotationCoroutineRight;
@@ -24,6 +24,8 @@ public class LeverController : MonoBehaviour
     public float flipperRightMaxAngle, flipperRightMinAngle;
 
     public float flipperRotationAngle;
+
+    public bool controlHeld;
 
     private void Start()
     {
@@ -41,14 +43,25 @@ public class LeverController : MonoBehaviour
         
         rigRight.centerOfMass = Vector3.zero;
         rigLeft.centerOfMass = Vector3.zero;
+        
+        rigRight_L2.centerOfMass = Vector3.zero;
+        rigLeft_L2.centerOfMass = Vector3.zero;
 
         Vector3 flipperLeftAngle = flipperLeft.eulerAngles;
+        Vector3 flipperLeftAngle_L2 = flipperLeft_L2.eulerAngles;
         Vector3 flipperRightAngle = flipperRight.eulerAngles;
+        Vector3 flipperRightAngle_L2 = flipperRight_L2.eulerAngles;
         
         if (flipperLeftAngle.y <= flipperLeftMaxAngle)
         {
             rigLeft.angularVelocity = Vector3.zero;
             flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMaxAngle, flipperLeftAngle.z);
+        }
+        
+        if (flipperLeftAngle_L2.y <= flipperLeftMaxAngle)
+        {
+            rigLeft_L2.angularVelocity = Vector3.zero;
+            flipperLeft_L2.eulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMaxAngle, flipperLeftAngle_L2.z);
         }
 
         if (flipperLeftAngle.y >= flipperLeftMinAngle)
@@ -57,10 +70,22 @@ public class LeverController : MonoBehaviour
             flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMinAngle, flipperLeftAngle.z);
         }
         
+        if (flipperLeftAngle_L2.y >= flipperLeftMinAngle)
+        {
+            rigLeft_L2.angularVelocity = Vector3.zero;
+            flipperLeft_L2.eulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMinAngle, flipperLeftAngle_L2.z);
+        }
+        
         if (flipperRightAngle.y >= flipperRightMaxAngle)
         {
             rigRight.angularVelocity = Vector3.zero;
             flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMaxAngle, flipperRightAngle.z);
+        }
+        
+        if (flipperRightAngle_L2.y >= flipperRightMaxAngle)
+        {
+            rigRight_L2.angularVelocity = Vector3.zero;
+            flipperRight_L2.eulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMaxAngle, flipperRightAngle_L2.z);
         }
 
         if (flipperRightAngle.y <= flipperRightMinAngle)
@@ -69,17 +94,37 @@ public class LeverController : MonoBehaviour
             flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMinAngle, flipperRightAngle.z);
         }
         
+        if (flipperRightAngle_L2.y <= flipperRightMinAngle)
+        {
+            rigRight_L2.angularVelocity = Vector3.zero;
+            flipperRight_L2.eulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMinAngle, flipperRightAngle_L2.z);
+        }
+        
     }
     
     void OnLeftTrigger(InputValue value)
     {
         float val = value.Get<float>();
-        
-        if (val > 0)
+
+        if (controlHeld)
         {
-            if (flipperLeft.eulerAngles.y > 65)
+            if (val > 0)
             {
-                rigLeft.AddTorque(Vector3.up * force * -1);
+                if (flipperLeft.eulerAngles.y > 65)
+                {
+                    rigLeft_L2.AddTorque(Vector3.up * force * -1);
+                }
+            }
+        }
+        else
+        {
+            if (val > 0)
+            {
+                if (flipperLeft.eulerAngles.y > 65)
+                {
+                    rigLeft.AddTorque(Vector3.up * force * -1);
+                    
+                }
             }
         }
         
@@ -87,6 +132,9 @@ public class LeverController : MonoBehaviour
         {
             rigLeft.angularVelocity = Vector3.zero;
             rigLeft.AddTorque(Vector3.up * force);
+            
+            rigLeft_L2.angularVelocity = Vector3.zero;
+            rigLeft_L2.AddTorque(Vector3.up * force);
         }
     }
     
@@ -94,20 +142,51 @@ public class LeverController : MonoBehaviour
     void OnRightTrigger(InputValue value)
     {
         float val = value.Get<float>();
-        
-        if (val > 0)
+
+        if (controlHeld)
         {
-            if (flipperRight.eulerAngles.y < 265)
+            if (val > 0)
             {
-                rigRight.AddTorque(Vector3.up * force);
-            }
+                if (flipperRight.eulerAngles.y < 265)
+                {
+                    rigRight_L2.AddTorque(Vector3.up * force);
+                }
             
+            }
+        }
+        
+        else
+        {
+            if (val > 0)
+            {
+                if (flipperRight.eulerAngles.y < 265)
+                {
+                    rigRight.AddTorque(Vector3.up * force);
+                }
+            }
         }
         
         if (val <= 0)
         {
             rigRight.angularVelocity = Vector3.zero;
             rigRight.AddTorque(Vector3.up * force * -1);
+            
+            rigRight_L2.angularVelocity = Vector3.zero;
+            rigRight_L2.AddTorque(Vector3.up * force * -1);
+        }
+    }
+
+    void OnControl(InputValue value)
+    {
+        float val = value.Get<float>();
+
+        if (val > 0)
+        {
+            controlHeld = true;
+        }
+        else
+        {
+            controlHeld = false;
         }
     }
     

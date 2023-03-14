@@ -44,6 +44,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Control"",
+                    ""type"": ""Value"",
+                    ""id"": ""fece13ec-9bd5-4b5e-8cf4-5e02022743da"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""RightTrigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f643e881-4586-4553-a6fa-83f377b52cab"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -88,6 +108,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""name"": ""RightTrigger"",
                     ""type"": ""Value"",
                     ""id"": ""6594248f-c1d3-470f-ab78-eb385e21bdec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Control"",
+                    ""type"": ""Value"",
+                    ""id"": ""3bdd3f68-612e-4aa7-9e4d-3088dc0f5c8a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -116,6 +145,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""RightTrigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a547ee9c-36fd-498a-a896-50d61893d11a"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,10 +166,12 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_LeftPlayer = asset.FindActionMap("LeftPlayer", throwIfNotFound: true);
         m_LeftPlayer_LeftTrigger = m_LeftPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
         m_LeftPlayer_RightTrigger = m_LeftPlayer.FindAction("RightTrigger", throwIfNotFound: true);
+        m_LeftPlayer_Control = m_LeftPlayer.FindAction("Control", throwIfNotFound: true);
         // RightPlayer
         m_RightPlayer = asset.FindActionMap("RightPlayer", throwIfNotFound: true);
         m_RightPlayer_LeftTrigger = m_RightPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
         m_RightPlayer_RightTrigger = m_RightPlayer.FindAction("RightTrigger", throwIfNotFound: true);
+        m_RightPlayer_Control = m_RightPlayer.FindAction("Control", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -193,12 +235,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<ILeftPlayerActions> m_LeftPlayerActionsCallbackInterfaces = new List<ILeftPlayerActions>();
     private readonly InputAction m_LeftPlayer_LeftTrigger;
     private readonly InputAction m_LeftPlayer_RightTrigger;
+    private readonly InputAction m_LeftPlayer_Control;
     public struct LeftPlayerActions
     {
         private @Input m_Wrapper;
         public LeftPlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftTrigger => m_Wrapper.m_LeftPlayer_LeftTrigger;
         public InputAction @RightTrigger => m_Wrapper.m_LeftPlayer_RightTrigger;
+        public InputAction @Control => m_Wrapper.m_LeftPlayer_Control;
         public InputActionMap Get() { return m_Wrapper.m_LeftPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,6 +258,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @RightTrigger.started += instance.OnRightTrigger;
             @RightTrigger.performed += instance.OnRightTrigger;
             @RightTrigger.canceled += instance.OnRightTrigger;
+            @Control.started += instance.OnControl;
+            @Control.performed += instance.OnControl;
+            @Control.canceled += instance.OnControl;
         }
 
         private void UnregisterCallbacks(ILeftPlayerActions instance)
@@ -224,6 +271,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @RightTrigger.started -= instance.OnRightTrigger;
             @RightTrigger.performed -= instance.OnRightTrigger;
             @RightTrigger.canceled -= instance.OnRightTrigger;
+            @Control.started -= instance.OnControl;
+            @Control.performed -= instance.OnControl;
+            @Control.canceled -= instance.OnControl;
         }
 
         public void RemoveCallbacks(ILeftPlayerActions instance)
@@ -247,12 +297,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private List<IRightPlayerActions> m_RightPlayerActionsCallbackInterfaces = new List<IRightPlayerActions>();
     private readonly InputAction m_RightPlayer_LeftTrigger;
     private readonly InputAction m_RightPlayer_RightTrigger;
+    private readonly InputAction m_RightPlayer_Control;
     public struct RightPlayerActions
     {
         private @Input m_Wrapper;
         public RightPlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftTrigger => m_Wrapper.m_RightPlayer_LeftTrigger;
         public InputAction @RightTrigger => m_Wrapper.m_RightPlayer_RightTrigger;
+        public InputAction @Control => m_Wrapper.m_RightPlayer_Control;
         public InputActionMap Get() { return m_Wrapper.m_RightPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -268,6 +320,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @RightTrigger.started += instance.OnRightTrigger;
             @RightTrigger.performed += instance.OnRightTrigger;
             @RightTrigger.canceled += instance.OnRightTrigger;
+            @Control.started += instance.OnControl;
+            @Control.performed += instance.OnControl;
+            @Control.canceled += instance.OnControl;
         }
 
         private void UnregisterCallbacks(IRightPlayerActions instance)
@@ -278,6 +333,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @RightTrigger.started -= instance.OnRightTrigger;
             @RightTrigger.performed -= instance.OnRightTrigger;
             @RightTrigger.canceled -= instance.OnRightTrigger;
+            @Control.started -= instance.OnControl;
+            @Control.performed -= instance.OnControl;
+            @Control.canceled -= instance.OnControl;
         }
 
         public void RemoveCallbacks(IRightPlayerActions instance)
@@ -299,10 +357,12 @@ public partial class @Input: IInputActionCollection2, IDisposable
     {
         void OnLeftTrigger(InputAction.CallbackContext context);
         void OnRightTrigger(InputAction.CallbackContext context);
+        void OnControl(InputAction.CallbackContext context);
     }
     public interface IRightPlayerActions
     {
         void OnLeftTrigger(InputAction.CallbackContext context);
         void OnRightTrigger(InputAction.CallbackContext context);
+        void OnControl(InputAction.CallbackContext context);
     }
 }
