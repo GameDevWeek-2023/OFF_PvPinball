@@ -74,4 +74,6 @@ public class Pipe : MonoBehaviour
             StartCoroutine(SpawnDelay(rig));
         }
     }
+    
+    
 }

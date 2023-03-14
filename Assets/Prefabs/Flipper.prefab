@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5481143092880860526}
   - component: {fileID: 831157772771134645}
   - component: {fileID: 395339710056559910}
+  - component: {fileID: 7148501174398476164}
   m_Layer: 6
   m_Name: Flipper
   m_TagString: Untagged
@@ -115,6 +116,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 110
   m_CollisionDetection: 3
+--- !u!114 &7148501174398476164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162492206591068673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a747eb082a338f3469ff88f2b9a27b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myColor: {r: 2, g: 0.41568628, b: 0, a: 0}
+  material: {fileID: 2100000, guid: bbb770e125e009e45892192feba9c25d, type: 2}
 --- !u!1001 &1444743295482151198
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,6 +26,8 @@ public class LeverController : MonoBehaviour
     public float flipperRotationAngle;
 
     public bool controlHeld;
+    
+    
 
     private void Start()
     {

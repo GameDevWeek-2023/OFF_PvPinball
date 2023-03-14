@@ -24,7 +24,10 @@ public class Spring : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         foreach (GameObject ball in balls)
         {
-            ball.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+            if (ball != null)
+            {
+                ball.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+            }
         }
         
         yield return new WaitForSeconds(0.25f);
