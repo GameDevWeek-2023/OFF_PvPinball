@@ -56,7 +56,7 @@ Material:
     - _QueueOffset: 0
     - _radius: 0.41
     m_Colors:
-    - _FeldGr_se: {r: 10, g: 10, b: 0, a: 0}
+    - _FeldGr_se: {r: 20, g: 20, b: 0, a: 0}
     - _Velosity: {r: 0, g: 0, b: 0, a: 0}
-    - _velocity: {r: -0.85, g: 0, b: 0, a: 0}
+    - _velocity: {r: -0.53, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
