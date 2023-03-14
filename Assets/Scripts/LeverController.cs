@@ -106,33 +106,38 @@ public class LeverController : MonoBehaviour
     {
         float val = value.Get<float>();
 
-        if (controlHeld)
+        
+        if (val > 0) 
         {
-            if (val > 0)
+            if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
             {
-                if (flipperLeft.eulerAngles.y > 65)
-                {
-                    rigLeft_L2.AddTorque(Vector3.up * force * -1);
-                }
-            }
-        }
-        else
-        {
-            if (val > 0)
-            {
-                if (flipperLeft.eulerAngles.y > 65)
-                {
-                    rigLeft.AddTorque(Vector3.up * force * -1);
+                rigLeft.AddTorque(Vector3.up * force * -1); 
                     
-                }
             }
         }
         
-        if (val <= 0)
+        else
         {
             rigLeft.angularVelocity = Vector3.zero;
             rigLeft.AddTorque(Vector3.up * force);
-            
+        }
+    }
+    
+    void OnLeftTriggerLayer2(InputValue value)
+    {
+        float val = value.Get<float>();
+        
+        if (val > 0) 
+        {
+            if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
+            {
+                rigLeft_L2.AddTorque(Vector3.up * force * -1); 
+                    
+            }
+        }
+        
+        else
+        {
             rigLeft_L2.angularVelocity = Vector3.zero;
             rigLeft_L2.AddTorque(Vector3.up * force);
         }
@@ -142,51 +147,38 @@ public class LeverController : MonoBehaviour
     void OnRightTrigger(InputValue value)
     {
         float val = value.Get<float>();
+        
+        if (val > 0)
+        {
+            if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
+            {
+                rigRight.AddTorque(Vector3.up * force);
+            }
+        }
 
-        if (controlHeld)
-        {
-            if (val > 0)
-            {
-                if (flipperRight.eulerAngles.y < 265)
-                {
-                    rigRight_L2.AddTorque(Vector3.up * force);
-                }
-            
-            }
-        }
-        
         else
-        {
-            if (val > 0)
-            {
-                if (flipperRight.eulerAngles.y < 265)
-                {
-                    rigRight.AddTorque(Vector3.up * force);
-                }
-            }
-        }
-        
-        if (val <= 0)
         {
             rigRight.angularVelocity = Vector3.zero;
             rigRight.AddTorque(Vector3.up * force * -1);
-            
-            rigRight_L2.angularVelocity = Vector3.zero;
-            rigRight_L2.AddTorque(Vector3.up * force * -1);
         }
     }
-
-    void OnControl(InputValue value)
+    
+    void OnRightTriggerLayer2(InputValue value)
     {
         float val = value.Get<float>();
 
         if (val > 0)
         {
-            controlHeld = true;
+            if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
+            {
+                rigRight_L2.AddTorque(Vector3.up * force);
+            }
         }
+
         else
         {
-            controlHeld = false;
+            rigRight_L2.angularVelocity = Vector3.zero;
+            rigRight_L2.AddTorque(Vector3.up * force * -1);
         }
     }
     

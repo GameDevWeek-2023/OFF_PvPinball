@@ -37,9 +37,27 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""LeftTriggerLayer2"",
+                    ""type"": ""Value"",
+                    ""id"": ""3e67438c-9861-462d-8c2c-aaeb3fd818a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""RightTrigger"",
                     ""type"": ""Value"",
                     ""id"": ""cb693b29-b7fc-45ae-81b5-3afb85cd98c1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightTriggerLayer2"",
+                    ""type"": ""Value"",
+                    ""id"": ""b6c89c33-9580-4f7e-a6b6-39a71a3976b0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -88,6 +106,28 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""Control"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""614e1585-cbc0-4994-b8e3-f5af401d4b6c"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftTriggerLayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""858ccba3-b989-4729-a069-eb72f29e9549"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightTriggerLayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -105,9 +145,27 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""LeftTriggerLayer2"",
+                    ""type"": ""Value"",
+                    ""id"": ""68e2d4d3-0e3f-4ded-b3de-66dad328c709"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""RightTrigger"",
                     ""type"": ""Value"",
                     ""id"": ""6594248f-c1d3-470f-ab78-eb385e21bdec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightTriggerLayer2"",
+                    ""type"": ""Value"",
+                    ""id"": ""59a082a6-23cb-43e4-b70d-1f4d70025b72"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -156,6 +214,28 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""Control"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4980abc9-f183-4fef-8788-6941594094cc"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftTriggerLayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68d09f02-bf68-463e-8615-3c51eb394aca"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightTriggerLayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -165,12 +245,16 @@ public partial class @Input: IInputActionCollection2, IDisposable
         // LeftPlayer
         m_LeftPlayer = asset.FindActionMap("LeftPlayer", throwIfNotFound: true);
         m_LeftPlayer_LeftTrigger = m_LeftPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
+        m_LeftPlayer_LeftTriggerLayer2 = m_LeftPlayer.FindAction("LeftTriggerLayer2", throwIfNotFound: true);
         m_LeftPlayer_RightTrigger = m_LeftPlayer.FindAction("RightTrigger", throwIfNotFound: true);
+        m_LeftPlayer_RightTriggerLayer2 = m_LeftPlayer.FindAction("RightTriggerLayer2", throwIfNotFound: true);
         m_LeftPlayer_Control = m_LeftPlayer.FindAction("Control", throwIfNotFound: true);
         // RightPlayer
         m_RightPlayer = asset.FindActionMap("RightPlayer", throwIfNotFound: true);
         m_RightPlayer_LeftTrigger = m_RightPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
+        m_RightPlayer_LeftTriggerLayer2 = m_RightPlayer.FindAction("LeftTriggerLayer2", throwIfNotFound: true);
         m_RightPlayer_RightTrigger = m_RightPlayer.FindAction("RightTrigger", throwIfNotFound: true);
+        m_RightPlayer_RightTriggerLayer2 = m_RightPlayer.FindAction("RightTriggerLayer2", throwIfNotFound: true);
         m_RightPlayer_Control = m_RightPlayer.FindAction("Control", throwIfNotFound: true);
     }
 
@@ -234,14 +318,18 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_LeftPlayer;
     private List<ILeftPlayerActions> m_LeftPlayerActionsCallbackInterfaces = new List<ILeftPlayerActions>();
     private readonly InputAction m_LeftPlayer_LeftTrigger;
+    private readonly InputAction m_LeftPlayer_LeftTriggerLayer2;
     private readonly InputAction m_LeftPlayer_RightTrigger;
+    private readonly InputAction m_LeftPlayer_RightTriggerLayer2;
     private readonly InputAction m_LeftPlayer_Control;
     public struct LeftPlayerActions
     {
         private @Input m_Wrapper;
         public LeftPlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftTrigger => m_Wrapper.m_LeftPlayer_LeftTrigger;
+        public InputAction @LeftTriggerLayer2 => m_Wrapper.m_LeftPlayer_LeftTriggerLayer2;
         public InputAction @RightTrigger => m_Wrapper.m_LeftPlayer_RightTrigger;
+        public InputAction @RightTriggerLayer2 => m_Wrapper.m_LeftPlayer_RightTriggerLayer2;
         public InputAction @Control => m_Wrapper.m_LeftPlayer_Control;
         public InputActionMap Get() { return m_Wrapper.m_LeftPlayer; }
         public void Enable() { Get().Enable(); }
@@ -255,9 +343,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @LeftTrigger.started += instance.OnLeftTrigger;
             @LeftTrigger.performed += instance.OnLeftTrigger;
             @LeftTrigger.canceled += instance.OnLeftTrigger;
+            @LeftTriggerLayer2.started += instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.performed += instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.canceled += instance.OnLeftTriggerLayer2;
             @RightTrigger.started += instance.OnRightTrigger;
             @RightTrigger.performed += instance.OnRightTrigger;
             @RightTrigger.canceled += instance.OnRightTrigger;
+            @RightTriggerLayer2.started += instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.performed += instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.canceled += instance.OnRightTriggerLayer2;
             @Control.started += instance.OnControl;
             @Control.performed += instance.OnControl;
             @Control.canceled += instance.OnControl;
@@ -268,9 +362,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @LeftTrigger.started -= instance.OnLeftTrigger;
             @LeftTrigger.performed -= instance.OnLeftTrigger;
             @LeftTrigger.canceled -= instance.OnLeftTrigger;
+            @LeftTriggerLayer2.started -= instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.performed -= instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.canceled -= instance.OnLeftTriggerLayer2;
             @RightTrigger.started -= instance.OnRightTrigger;
             @RightTrigger.performed -= instance.OnRightTrigger;
             @RightTrigger.canceled -= instance.OnRightTrigger;
+            @RightTriggerLayer2.started -= instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.performed -= instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.canceled -= instance.OnRightTriggerLayer2;
             @Control.started -= instance.OnControl;
             @Control.performed -= instance.OnControl;
             @Control.canceled -= instance.OnControl;
@@ -296,14 +396,18 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_RightPlayer;
     private List<IRightPlayerActions> m_RightPlayerActionsCallbackInterfaces = new List<IRightPlayerActions>();
     private readonly InputAction m_RightPlayer_LeftTrigger;
+    private readonly InputAction m_RightPlayer_LeftTriggerLayer2;
     private readonly InputAction m_RightPlayer_RightTrigger;
+    private readonly InputAction m_RightPlayer_RightTriggerLayer2;
     private readonly InputAction m_RightPlayer_Control;
     public struct RightPlayerActions
     {
         private @Input m_Wrapper;
         public RightPlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftTrigger => m_Wrapper.m_RightPlayer_LeftTrigger;
+        public InputAction @LeftTriggerLayer2 => m_Wrapper.m_RightPlayer_LeftTriggerLayer2;
         public InputAction @RightTrigger => m_Wrapper.m_RightPlayer_RightTrigger;
+        public InputAction @RightTriggerLayer2 => m_Wrapper.m_RightPlayer_RightTriggerLayer2;
         public InputAction @Control => m_Wrapper.m_RightPlayer_Control;
         public InputActionMap Get() { return m_Wrapper.m_RightPlayer; }
         public void Enable() { Get().Enable(); }
@@ -317,9 +421,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @LeftTrigger.started += instance.OnLeftTrigger;
             @LeftTrigger.performed += instance.OnLeftTrigger;
             @LeftTrigger.canceled += instance.OnLeftTrigger;
+            @LeftTriggerLayer2.started += instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.performed += instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.canceled += instance.OnLeftTriggerLayer2;
             @RightTrigger.started += instance.OnRightTrigger;
             @RightTrigger.performed += instance.OnRightTrigger;
             @RightTrigger.canceled += instance.OnRightTrigger;
+            @RightTriggerLayer2.started += instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.performed += instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.canceled += instance.OnRightTriggerLayer2;
             @Control.started += instance.OnControl;
             @Control.performed += instance.OnControl;
             @Control.canceled += instance.OnControl;
@@ -330,9 +440,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @LeftTrigger.started -= instance.OnLeftTrigger;
             @LeftTrigger.performed -= instance.OnLeftTrigger;
             @LeftTrigger.canceled -= instance.OnLeftTrigger;
+            @LeftTriggerLayer2.started -= instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.performed -= instance.OnLeftTriggerLayer2;
+            @LeftTriggerLayer2.canceled -= instance.OnLeftTriggerLayer2;
             @RightTrigger.started -= instance.OnRightTrigger;
             @RightTrigger.performed -= instance.OnRightTrigger;
             @RightTrigger.canceled -= instance.OnRightTrigger;
+            @RightTriggerLayer2.started -= instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.performed -= instance.OnRightTriggerLayer2;
+            @RightTriggerLayer2.canceled -= instance.OnRightTriggerLayer2;
             @Control.started -= instance.OnControl;
             @Control.performed -= instance.OnControl;
             @Control.canceled -= instance.OnControl;
@@ -356,13 +472,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
     public interface ILeftPlayerActions
     {
         void OnLeftTrigger(InputAction.CallbackContext context);
+        void OnLeftTriggerLayer2(InputAction.CallbackContext context);
         void OnRightTrigger(InputAction.CallbackContext context);
+        void OnRightTriggerLayer2(InputAction.CallbackContext context);
         void OnControl(InputAction.CallbackContext context);
     }
     public interface IRightPlayerActions
     {
         void OnLeftTrigger(InputAction.CallbackContext context);
+        void OnLeftTriggerLayer2(InputAction.CallbackContext context);
         void OnRightTrigger(InputAction.CallbackContext context);
+        void OnRightTriggerLayer2(InputAction.CallbackContext context);
         void OnControl(InputAction.CallbackContext context);
     }
 }
