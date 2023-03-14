@@ -12,13 +12,13 @@ TagManager:
   - Water
   - UI
   - TrailLayer
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ball
+  - BallLayer2
+  - Flipper
+  - FlipperLayer2
+  - Obstacles
+  - ObstaclesLayer2
+  - Pipe
   - 
   - 
   - 
