@@ -23,6 +23,19 @@ public class LeverController : MonoBehaviour
     private Coroutine rotationCoroutineLeft;
     private Coroutine rotationCoroutineRight;
 
+    public float flipperLeftMaxAngle, flipperLeftMinAngle;
+    public float flipperRightMaxAngle, flipperRightMinAngle;
+
+    public float flipperRotationAngle;
+
+    private void Start()
+    {
+        flipperLeftMinAngle = flipperLeft.eulerAngles.y;
+        flipperRightMinAngle = flipperRight.eulerAngles.y;
+
+        flipperLeftMaxAngle = flipperLeftMinAngle - flipperRotationAngle;
+        flipperRightMaxAngle = flipperRightMinAngle + flipperRotationAngle;
+    }
 
     private void LateUpdate()
     {
@@ -35,33 +48,70 @@ public class LeverController : MonoBehaviour
         Vector3 flipperLeftAngle = flipperLeft.eulerAngles;
         Vector3 flipperRightAngle = flipperRight.eulerAngles;
         
-        /*float newRotLeft = Mathf.Clamp(flipperLeftAngle.y, 65, 110);
-        flipperLeft.rotation = Quaternion.Euler(flipperLeftAngle.x, newRotLeft, flipperLeftAngle.z);
-        
-        float newRotRight = Mathf.Clamp(flipperRightAngle.y, 250, 295);
-        flipperRight.rotation = Quaternion.Euler(flipperRightAngle.x, newRotRight, flipperRightAngle.z);*/
-
-
-        if (flipperLeftAngle.y <= 65)
+        if (flipperLeftAngle.y <= flipperLeftMaxAngle)
         {
             rigLeft.angularVelocity = Vector3.zero;
+            flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMaxAngle, flipperLeftAngle.z);
         }
 
-        if (flipperLeftAngle.y >= 110)
+        if (flipperLeftAngle.y >= flipperLeftMinAngle)
         {
             rigLeft.angularVelocity = Vector3.zero;
+            flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMinAngle, flipperLeftAngle.z);
         }
         
-        if (flipperRightAngle.y >= 294)
+        if (flipperRightAngle.y >= flipperRightMaxAngle)
         {
             rigRight.angularVelocity = Vector3.zero;
+            flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMaxAngle, flipperRightAngle.z);
         }
 
-        if (flipperRightAngle.y <= 250)
+        if (flipperRightAngle.y <= flipperRightMinAngle)
         {
             rigRight.angularVelocity = Vector3.zero;
+            flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMinAngle, flipperRightAngle.z);
         }
         
+    }
+    
+    void OnLeftTrigger(InputValue value)
+    {
+        float val = value.Get<float>();
+        
+        if (val > 0)
+        {
+            if (flipperLeft.eulerAngles.y > 65)
+            {
+                rigLeft.AddTorque(Vector3.up * force * -1);
+            }
+        }
+        
+        if (val <= 0)
+        {
+            rigLeft.angularVelocity = Vector3.zero;
+            rigLeft.AddTorque(Vector3.up * force);
+        }
+    }
+    
+    
+    void OnRightTrigger(InputValue value)
+    {
+        float val = value.Get<float>();
+        
+        if (val > 0)
+        {
+            if (flipperRight.eulerAngles.y < 265)
+            {
+                rigRight.AddTorque(Vector3.up * force);
+            }
+            
+        }
+        
+        if (val <= 0)
+        {
+            rigRight.angularVelocity = Vector3.zero;
+            rigRight.AddTorque(Vector3.up * force * -1);
+        }
     }
     
     // direction -1 for left trigger, 1 for right trigger
@@ -87,66 +137,5 @@ public class LeverController : MonoBehaviour
             yield return null;
         }
     }
-    
-    
-    void OnLeftTrigger(InputValue value)
-    {
-        float val = value.Get<float>();
-        
-        if (val > 0)
-        {
-            /*if (rotationCoroutineLeft != null)
-            {
-                StopCoroutine(rotationCoroutineLeft);
-            }
-            rotationCoroutineLeft = StartCoroutine(RotateTrigger(-1, pivotPointLeft));*/
 
-            if (flipperLeft.eulerAngles.y > 65)
-            {
-                rigLeft.AddTorque(Vector3.up * force * -1);
-            }
-        }
-        
-        if (val <= 0)
-        {
-            if (rotationCoroutineLeft != null)
-            {
-                StopCoroutine(rotationCoroutineLeft);
-            }
-
-            //pivotPointLeft.transform.eulerAngles = new Vector3(pivotPointLeft.transform.eulerAngles.x, 0,
-                //pivotPointLeft.transform.eulerAngles.z);
-        }
-    }
-    
-    
-    void OnRightTrigger(InputValue value)
-    {
-        float val = value.Get<float>();
-        
-        if (val > 0)
-        {
-            /*if (rotationCoroutineRight != null)
-            {
-                StopCoroutine(rotationCoroutineRight);
-            }
-            rotationCoroutineRight = StartCoroutine(RotateTrigger(1, pivotPointRight));*/
-
-            if (flipperRight.eulerAngles.y < 265)
-            {
-                rigRight.AddTorque(Vector3.up * force);
-            }
-            
-        }
-        
-        if (val <= 0)
-        {
-            if (rotationCoroutineRight != null)
-            {
-                StopCoroutine(rotationCoroutineRight);
-            }
-            //pivotPointRight.transform.eulerAngles = new Vector3(pivotPointRight.transform.eulerAngles.x, 0,
-                //pivotPointRight.transform.eulerAngles.z);
-        }
-    }
 }

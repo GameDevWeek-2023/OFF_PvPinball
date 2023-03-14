@@ -50,7 +50,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5aa2f028-8f5d-4ede-874e-27fede1d3f4d"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,7 +61,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""211e1316-d5e1-4375-a269-eb5457267f87"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -76,24 +76,44 @@ public partial class @Input: IInputActionCollection2, IDisposable
             ""id"": ""194a303d-aac1-4f6f-b89e-a3e8860c09fc"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""LeftTrigger"",
+                    ""type"": ""Value"",
                     ""id"": ""82af514f-5325-412f-84dc-958ccbf16329"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RightTrigger"",
+                    ""type"": ""Value"",
+                    ""id"": ""6594248f-c1d3-470f-ab78-eb385e21bdec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""0d340c8f-b6be-463b-a71c-457842b9c8d7"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""LeftTrigger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1eb8de1-d24e-406f-b954-19e77fc86211"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightTrigger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -108,7 +128,8 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_LeftPlayer_RightTrigger = m_LeftPlayer.FindAction("RightTrigger", throwIfNotFound: true);
         // RightPlayer
         m_RightPlayer = asset.FindActionMap("RightPlayer", throwIfNotFound: true);
-        m_RightPlayer_Newaction = m_RightPlayer.FindAction("New action", throwIfNotFound: true);
+        m_RightPlayer_LeftTrigger = m_RightPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
+        m_RightPlayer_RightTrigger = m_RightPlayer.FindAction("RightTrigger", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -224,12 +245,14 @@ public partial class @Input: IInputActionCollection2, IDisposable
     // RightPlayer
     private readonly InputActionMap m_RightPlayer;
     private List<IRightPlayerActions> m_RightPlayerActionsCallbackInterfaces = new List<IRightPlayerActions>();
-    private readonly InputAction m_RightPlayer_Newaction;
+    private readonly InputAction m_RightPlayer_LeftTrigger;
+    private readonly InputAction m_RightPlayer_RightTrigger;
     public struct RightPlayerActions
     {
         private @Input m_Wrapper;
         public RightPlayerActions(@Input wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_RightPlayer_Newaction;
+        public InputAction @LeftTrigger => m_Wrapper.m_RightPlayer_LeftTrigger;
+        public InputAction @RightTrigger => m_Wrapper.m_RightPlayer_RightTrigger;
         public InputActionMap Get() { return m_Wrapper.m_RightPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -239,16 +262,22 @@ public partial class @Input: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_RightPlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_RightPlayerActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @LeftTrigger.started += instance.OnLeftTrigger;
+            @LeftTrigger.performed += instance.OnLeftTrigger;
+            @LeftTrigger.canceled += instance.OnLeftTrigger;
+            @RightTrigger.started += instance.OnRightTrigger;
+            @RightTrigger.performed += instance.OnRightTrigger;
+            @RightTrigger.canceled += instance.OnRightTrigger;
         }
 
         private void UnregisterCallbacks(IRightPlayerActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @LeftTrigger.started -= instance.OnLeftTrigger;
+            @LeftTrigger.performed -= instance.OnLeftTrigger;
+            @LeftTrigger.canceled -= instance.OnLeftTrigger;
+            @RightTrigger.started -= instance.OnRightTrigger;
+            @RightTrigger.performed -= instance.OnRightTrigger;
+            @RightTrigger.canceled -= instance.OnRightTrigger;
         }
 
         public void RemoveCallbacks(IRightPlayerActions instance)
@@ -273,6 +302,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     }
     public interface IRightPlayerActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnLeftTrigger(InputAction.CallbackContext context);
+        void OnRightTrigger(InputAction.CallbackContext context);
     }
 }
