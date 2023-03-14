@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 831157772771134645}
   - component: {fileID: 395339710056559910}
   - component: {fileID: 142745969975978318}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: FlipperLayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ PrefabInstance:
     - target: {fileID: 1523426669976381581, guid: dc587058c8adf6643a8126f58e84c33a,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3477624934569970571, guid: dc587058c8adf6643a8126f58e84c33a,
         type: 3}
@@ -283,7 +283,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a1ab6e18026648b42abded307a83ab97, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4416382988963196422, guid: dc587058c8adf6643a8126f58e84c33a, type: 3}
+    - {fileID: 3353867413063539224, guid: dc587058c8adf6643a8126f58e84c33a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc587058c8adf6643a8126f58e84c33a, type: 3}
 --- !u!4 &2793306412623645833 stripped
 Transform:

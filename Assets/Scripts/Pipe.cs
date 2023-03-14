@@ -50,6 +50,7 @@ public class Pipe : MonoBehaviour
 
     IEnumerator SpawnDelay(Rigidbody rig)
     {
+        canSpawn = false;
         yield return new WaitForSeconds(spawnDelay);
         rig.isKinematic = false;
         rig.AddForce(spawnPoint.forward * force);
@@ -58,21 +59,32 @@ public class Pipe : MonoBehaviour
 
     public void SpawnBall(int type)
     {
-        canSpawn = false;
-        if (type == 0)
+        
+        if (canSpawn)
         {
-            GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-            Rigidbody rig = b.GetComponent<Rigidbody>();
-            rig.isKinematic = true;
-            StartCoroutine(SpawnDelay(rig));
+            if (type == 0)
+            {
+                GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                Rigidbody rig = b.GetComponent<Rigidbody>();
+                rig.isKinematic = true;
+                if (canSpawn)
+                {
+                    StartCoroutine(SpawnDelay(rig));
+                }
+            }
+            else
+            {
+                GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                Rigidbody rig = b.GetComponent<Rigidbody>();
+                rig.isKinematic = true;
+                canSpawn = false;
+                if (canSpawn)
+                {
+                    StartCoroutine(SpawnDelay(rig));
+                }
+            }
         }
-        else
-        {
-            GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-            Rigidbody rig = b.GetComponent<Rigidbody>();
-            rig.isKinematic = true;
-            StartCoroutine(SpawnDelay(rig));
-        }
+        
     }
     
     

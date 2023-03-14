@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2430082988212666595}
   - component: {fileID: 1346853484490120933}
   - component: {fileID: 5822184441196343811}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Bouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
