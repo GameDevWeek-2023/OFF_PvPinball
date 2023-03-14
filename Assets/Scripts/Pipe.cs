@@ -16,8 +16,15 @@ public class Pipe : MonoBehaviour
 
     public GameObject ball, ballLayerTwo;
 
+    public List<int> ballQueue = new List<int>();
+
     private bool canSpawn = true;
-    
+
+
+    private void Start()
+    {
+        StartCoroutine(SpawnRoutine());
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -53,10 +60,36 @@ public class Pipe : MonoBehaviour
         canSpawn = false;
         yield return new WaitForSeconds(spawnDelay);
         rig.isKinematic = false;
-        rig.AddForce(spawnPoint.forward * force);
+        
         canSpawn = true;
     }
 
+    IEnumerator SpawnRoutine()
+    {
+        while (true)
+        {
+            if (ballQueue.Count > 0)
+            {
+                if (ballQueue[0] == 0)
+                {
+                    GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                    Rigidbody rig = b.GetComponent<Rigidbody>();
+                    rig.AddForce(spawnPoint.forward * force);
+                    ballQueue.RemoveAt(0);
+                }
+                else
+                {
+                    GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                    Rigidbody rig = b.GetComponent<Rigidbody>();
+                    rig.AddForce(spawnPoint.forward * force);
+                    ballQueue.RemoveAt(0);
+                }
+            }
+            
+
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
     public void SpawnBall(int type)
     {
         
@@ -64,24 +97,11 @@ public class Pipe : MonoBehaviour
         {
             if (type == 0)
             {
-                GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-                Rigidbody rig = b.GetComponent<Rigidbody>();
-                rig.isKinematic = true;
-                if (canSpawn)
-                {
-                    StartCoroutine(SpawnDelay(rig));
-                }
+                ballQueue.Add(0);
             }
             else
             {
-                GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-                Rigidbody rig = b.GetComponent<Rigidbody>();
-                rig.isKinematic = true;
-                canSpawn = false;
-                if (canSpawn)
-                {
-                    StartCoroutine(SpawnDelay(rig));
-                }
+                ballQueue.Add(1);
             }
         }
         
