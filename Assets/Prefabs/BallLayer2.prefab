@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigBody: {fileID: 4804440217817218044}
+  isLayerTwo: 1
 --- !u!114 &3225850766931571787
 MonoBehaviour:
   m_ObjectHideFlags: 0
