@@ -20,13 +20,6 @@ public class BallTrailSkript : MonoBehaviour
 
         renderTarget = cam.targetTexture;
     }
-    private void FixedUpdate()
-    {
-        var input = Input.GetAxis("Horizontal");
-        var input2 = Input.GetAxis("Vertical");
-        rig.AddForce(Vector3.right * input);
-        rig.AddForce(Vector3.forward * input2);
-    }
     // Update is called once per frame
     void Update()
     {
