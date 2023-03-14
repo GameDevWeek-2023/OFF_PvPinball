@@ -247,7 +247,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438099510}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -298,10 +298,10 @@ VisualEffect:
       - m_Value: 60000
         m_Name: GrasHalmCount
         m_Overridden: 1
-      - m_Value: 0.95
+      - m_Value: 0.7
         m_Name: MaxHightOfsetProzent
         m_Overridden: 1
-      - m_Value: 0.08
+      - m_Value: 0.11
         m_Name: GrasOfsetStregt
         m_Overridden: 1
     m_Vector2f:
@@ -453,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593750023}
   m_LocalRotation: {x: -0.0041515017, y: -0, z: -0, w: 0.9999914}
-  m_LocalPosition: {x: -1.524, y: 0.41, z: -0.416}
+  m_LocalPosition: {x: -0.31, y: 0.424, z: 0.882}
   m_LocalScale: {x: 0.41, y: 0.41, z: 0.41}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -472,12 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2252326ae7db6b84aa4aa8186dab2a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1408042734}
   force: {x: 0, y: 0, z: 0}
   grasAuftelMaterial: {fileID: 2100000, guid: a23b62e7b65a0dc47bb79b1b84703941, type: 2}
-  renderTexture1: {fileID: 8400000, guid: 4799aa02066abb34c88806dfc91f0096, type: 2}
-  renderTexture2: {fileID: 8400000, guid: 87f240518dffc1c419634ce5f5021570, type: 2}
-  renderTarget: {fileID: 0}
+  renderTarget: {fileID: 8400000, guid: 4799aa02066abb34c88806dfc91f0096, type: 2}
   prevRenderTarget: {fileID: 8400000, guid: 87f240518dffc1c419634ce5f5021570, type: 2}
 --- !u!1 &937606569
 GameObject:
@@ -569,7 +566,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937606569}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.01090805, y: 0, z: 0, w: 0.9999405}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -579,7 +576,7 @@ Transform:
   - {fileID: 1596343144}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.25, y: 0, z: 0}
 --- !u!1 &948478667
 GameObject:
   m_ObjectHideFlags: 0
