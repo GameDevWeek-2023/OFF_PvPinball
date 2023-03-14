@@ -16,9 +16,6 @@ public class LeverController : MonoBehaviour
 
     public Rigidbody rigLeft;
     public Rigidbody rigRight;
-
-    public Vector3 startValuesLeft;
-    public Vector3 startValuesRight;
     
     private Coroutine rotationCoroutineLeft;
     private Coroutine rotationCoroutineRight;
