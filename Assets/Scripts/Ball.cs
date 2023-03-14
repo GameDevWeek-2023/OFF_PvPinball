@@ -7,6 +7,8 @@ public class Ball : MonoBehaviour
 {
     private Vector3 lastVelocity;
     public Rigidbody rigBody;
+
+    public bool isLayerTwo;
     private void Update()
     {
         lastVelocity = rigBody.velocity;
