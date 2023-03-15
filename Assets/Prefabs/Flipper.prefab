@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2787001342444052834}
   - component: {fileID: 5481143092880860526}
   - component: {fileID: 831157772771134645}
-  - component: {fileID: 395339710056559910}
+  - component: {fileID: 995061752}
   m_Layer: 9
   m_Name: Flipper
   m_TagString: Untagged
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7162492206591068673}
-  m_LocalRotation: {x: 0.031781007, y: -0, z: -0, w: 0.99949485}
+  m_LocalRotation: {x: 0.031777095, y: 0, z: 0, w: 0.999495}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.009999999, y: 0.010000001, z: 0.009999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2793306412623645833}
@@ -93,13 +93,13 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7162492206591068673}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f1f5eea86adc69147ba078f30e95849c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &395339710056559910
+--- !u!54 &995061752
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,9 +107,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7162492206591068673}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.001
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
