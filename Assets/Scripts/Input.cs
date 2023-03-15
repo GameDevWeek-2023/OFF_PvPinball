@@ -71,6 +71,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Value"",
+                    ""id"": ""0c30d20d-e772-4395-baac-c7272126bbfe"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -126,6 +135,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""RightTriggerLayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f62bbee-a5e5-412c-a825-09da4c49b66f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -249,6 +269,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_LeftPlayer_RightTrigger = m_LeftPlayer.FindAction("RightTrigger", throwIfNotFound: true);
         m_LeftPlayer_RightTriggerLayer2 = m_LeftPlayer.FindAction("RightTriggerLayer2", throwIfNotFound: true);
         m_LeftPlayer_Control = m_LeftPlayer.FindAction("Control", throwIfNotFound: true);
+        m_LeftPlayer_Fire = m_LeftPlayer.FindAction("Fire", throwIfNotFound: true);
         // RightPlayer
         m_RightPlayer = asset.FindActionMap("RightPlayer", throwIfNotFound: true);
         m_RightPlayer_LeftTrigger = m_RightPlayer.FindAction("LeftTrigger", throwIfNotFound: true);
@@ -322,6 +343,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_LeftPlayer_RightTrigger;
     private readonly InputAction m_LeftPlayer_RightTriggerLayer2;
     private readonly InputAction m_LeftPlayer_Control;
+    private readonly InputAction m_LeftPlayer_Fire;
     public struct LeftPlayerActions
     {
         private @Input m_Wrapper;
@@ -331,6 +353,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         public InputAction @RightTrigger => m_Wrapper.m_LeftPlayer_RightTrigger;
         public InputAction @RightTriggerLayer2 => m_Wrapper.m_LeftPlayer_RightTriggerLayer2;
         public InputAction @Control => m_Wrapper.m_LeftPlayer_Control;
+        public InputAction @Fire => m_Wrapper.m_LeftPlayer_Fire;
         public InputActionMap Get() { return m_Wrapper.m_LeftPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +378,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Control.started += instance.OnControl;
             @Control.performed += instance.OnControl;
             @Control.canceled += instance.OnControl;
+            @Fire.started += instance.OnFire;
+            @Fire.performed += instance.OnFire;
+            @Fire.canceled += instance.OnFire;
         }
 
         private void UnregisterCallbacks(ILeftPlayerActions instance)
@@ -374,6 +400,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Control.started -= instance.OnControl;
             @Control.performed -= instance.OnControl;
             @Control.canceled -= instance.OnControl;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
         }
 
         public void RemoveCallbacks(ILeftPlayerActions instance)
@@ -476,6 +505,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         void OnRightTrigger(InputAction.CallbackContext context);
         void OnRightTriggerLayer2(InputAction.CallbackContext context);
         void OnControl(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
     public interface IRightPlayerActions
     {
