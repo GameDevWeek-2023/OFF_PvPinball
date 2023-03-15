@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
         timerText.text = timer.ToString("F2");
         endScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("BackgroundMusic");
     }
 
     private void Update()

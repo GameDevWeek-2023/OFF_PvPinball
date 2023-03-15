@@ -97,7 +97,7 @@ public class Pipe : MonoBehaviour
                         Rigidbody rig = b.GetComponent<Rigidbody>();
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);
-                        
+                        FindObjectOfType<AudioManager>().Play("BallStart");
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                     
@@ -110,7 +110,7 @@ public class Pipe : MonoBehaviour
                         Rigidbody rig = b.GetComponent<Rigidbody>();
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);
-                        
+                        FindObjectOfType<AudioManager>().Play("BallStart");
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                 }

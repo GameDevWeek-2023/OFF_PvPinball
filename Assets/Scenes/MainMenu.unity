@@ -663,6 +663,12 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 1
+  - name: Katapult
+    clip: {fileID: 8300000, guid: 0d145865f25cccb429d598bddafb53da, type: 3}
+    volume: 0.15
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
 --- !u!4 &321810036
 Transform:
   m_ObjectHideFlags: 0
@@ -2025,7 +2031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.102000006, y: 0.8557038}
   m_AnchorMax: {x: 0.90400004, y: 0.95600003}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000091552734}
+  m_AnchoredPosition: {x: -0.000061035156, y: -0.00012207031}
   m_SizeDelta: {x: -0.00012207, y: -0.000068665}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &881745657
@@ -3674,7 +3680,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2721778, y: 0.072838254}
   m_AnchorMax: {x: 0.726, y: 0.18651477}
-  m_AnchoredPosition: {x: -0.000015258789, y: 0}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1783187879
@@ -9036,6 +9042,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4005952840861832665, guid: 28aa2793e51f04342be87d64b66e7b59,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 4005952840861832666, guid: 28aa2793e51f04342be87d64b66e7b59,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9159,6 +9170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574581050905712229, guid: b905591f2b287964e8085b6b9e08023b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 7574581050905712234, guid: b905591f2b287964e8085b6b9e08023b,
         type: 3}

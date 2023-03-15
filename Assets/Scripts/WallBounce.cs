@@ -33,7 +33,8 @@ public class WallBounce : MonoBehaviour
     {
             var rigidbody = collision.collider.attachedRigidbody;
             rigidbody.AddForce((standertForce + rigidbody.velocity.magnitude * speedMultiplier) * (rigidbody.position - transform.position).normalized);
-            sollState = 1;       
+            sollState = 1;
+            FindObjectOfType<AudioManager>().Play("Bumper");
     }
     private void Update()
     {

@@ -113,7 +113,8 @@ public class LeverController : MonoBehaviour
         {
             if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
             {
-                rigLeft.AddTorque(Vector3.up * force * -1); 
+                rigLeft.AddTorque(Vector3.up * force * -1);
+                FindObjectOfType<AudioManager>().Play("FlipperUp");
                     
             }
         }
@@ -122,6 +123,7 @@ public class LeverController : MonoBehaviour
         {
             rigLeft.angularVelocity = Vector3.zero;
             rigLeft.AddTorque(Vector3.up * force);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     
@@ -134,7 +136,7 @@ public class LeverController : MonoBehaviour
             if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
             {
                 rigLeft_L2.AddTorque(Vector3.up * force * -1); 
-                    
+                FindObjectOfType<AudioManager>().Play("FlipperUp");
             }
         }
         
@@ -142,6 +144,7 @@ public class LeverController : MonoBehaviour
         {
             rigLeft_L2.angularVelocity = Vector3.zero;
             rigLeft_L2.AddTorque(Vector3.up * force);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     
@@ -155,6 +158,7 @@ public class LeverController : MonoBehaviour
             if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
             {
                 rigRight.AddTorque(Vector3.up * force);
+                FindObjectOfType<AudioManager>().Play("FlipperUp");
             }
         }
 
@@ -162,6 +166,7 @@ public class LeverController : MonoBehaviour
         {
             rigRight.angularVelocity = Vector3.zero;
             rigRight.AddTorque(Vector3.up * force * -1);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     
@@ -174,6 +179,7 @@ public class LeverController : MonoBehaviour
             if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
             {
                 rigRight_L2.AddTorque(Vector3.up * force);
+                FindObjectOfType<AudioManager>().Play("FlipperUp");
             }
         }
 
@@ -181,6 +187,7 @@ public class LeverController : MonoBehaviour
         {
             rigRight_L2.angularVelocity = Vector3.zero;
             rigRight_L2.AddTorque(Vector3.up * force * -1);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     

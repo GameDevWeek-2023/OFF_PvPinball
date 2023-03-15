@@ -72,6 +72,7 @@ public class Katapult : MonoBehaviour
             
             var b = Instantiate(ball, ballPoint.transform.position, Quaternion.identity);
             b.GetComponent<Rigidbody>().AddForce(ballPoint.forward * shootForce, ForceMode.Impulse);
+            
          }
          
          rig.AddTorque(pivot.forward * 10);
@@ -109,6 +110,7 @@ public class Katapult : MonoBehaviour
 
       if (z >= -1)
       {
+         FindObjectOfType<AudioManager>().Play("Katapult");
          rig.AddTorque(pivot.forward * force* -3);
       }
    }

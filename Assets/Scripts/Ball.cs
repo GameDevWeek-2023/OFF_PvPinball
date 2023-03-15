@@ -18,18 +18,6 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
-
-        /* Jetzt IN WallBouncern
-        if(collision.gameObject.GetComponent<WallBounce>() != null)
-        {
-            WallBounce wallBounce = collision.gameObject.GetComponent<WallBounce>();
-            
-            var speed = lastVelocity.magnitude;
-            //var direction = Vector2.Reflect(lastVelocity.normalized, collision.contacts[0].normal);
-            var direction = collision.transform.position + transform.position; 
-            rigBody.velocity = direction * speed * wallBounce.speedMultiplier;
-        }
-        */
+        //FindObjectOfType<AudioManager>().Play("BallHit");
     }
 }
