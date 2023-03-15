@@ -26,6 +26,7 @@ public class Pipe : MonoBehaviour
     private bool gameStarted = false;
 
     private Coroutine spawnRoutine;
+    public bool canShoot;
 
     private void Start()
     {
@@ -90,17 +91,28 @@ public class Pipe : MonoBehaviour
             {
                 if (ballQueue[0] == 0)
                 {
-                    GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-                    Rigidbody rig = b.GetComponent<Rigidbody>();
-                    rig.AddForce(spawnPoint.forward * force);
-                    ballQueue.RemoveAt(0);
+                    if (canShoot)
+                    {
+                        GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        Rigidbody rig = b.GetComponent<Rigidbody>();
+                        rig.AddForce(spawnPoint.forward * force);
+                        ballQueue.RemoveAt(0);
+                        
+                        //FindObjectOfType<AudioManager>().Play("Launch");
+                    }
+                    
                 }
                 else
                 {
-                    GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
-                    Rigidbody rig = b.GetComponent<Rigidbody>();
-                    rig.AddForce(spawnPoint.forward * force);
-                    ballQueue.RemoveAt(0);
+                    if (canShoot)
+                    {
+                        GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        Rigidbody rig = b.GetComponent<Rigidbody>();
+                        rig.AddForce(spawnPoint.forward * force);
+                        ballQueue.RemoveAt(0);
+                        
+                        //FindObjectOfType<AudioManager>().Play("Launch");
+                    }
                 }
             }
             
@@ -155,4 +167,5 @@ public class Pipe : MonoBehaviour
     {
         ballQueue.Clear();
     }
+    
 }

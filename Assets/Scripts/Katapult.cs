@@ -25,6 +25,12 @@ public class Katapult : MonoBehaviour
    private GameObject currentBall;
 
    public float fireTime = 2;
+   
+   //Main Menu
+   public bool isMenu;
+   public Vector3 direction = Vector3.zero;
+   public float speed = 5;
+   
    private void Start()
    {
       minAngle = pivot.eulerAngles.z;
@@ -33,6 +39,21 @@ public class Katapult : MonoBehaviour
       currentBall = null;
 
       StartCoroutine(FireRoutine());
+      
+      
+   }
+
+   private void Update()
+   {
+      if (isMenu)
+      {
+         if (transform.localPosition.z > 250)
+         {
+            Destroy(this);
+         }
+         transform.position += direction * speed * Time.deltaTime;
+      }
+      
    }
 
    private void LateUpdate()
@@ -107,4 +128,6 @@ public class Katapult : MonoBehaviour
       currentBall = Instantiate(ball, ballPoint.transform.position, Quaternion.identity, ballPoint);
       currentBall.GetComponent<Rigidbody>().isKinematic = true;
    }
+   
+   
 }

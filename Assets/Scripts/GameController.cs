@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(false);
         if (!gameStarted && !isPlaying && !isPaused)
         {
+            TogglePipes(true);
             if (startPipeLeft != null)
             {
                 startPipeLeft.StartGame();
@@ -118,6 +119,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
+        TogglePipes(false);
         ResetPipes();
         DestroyBalls();
         timer = 0;
@@ -163,5 +165,20 @@ public class GameController : MonoBehaviour
             startPipeRight.StopGame();
             startPipeRight.LoadBalls();
         }
+    }
+
+    public void TogglePipes(bool val)
+    {
+        if (startPipeLeft != null)
+        {
+            startPipeLeft.canShoot = val;
+        }
+        
+        if (startPipeRight != null)
+        {
+            startPipeRight.canShoot = val;
+        }
+        
+        
     }
 }
