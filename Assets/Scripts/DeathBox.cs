@@ -8,14 +8,59 @@ public class DeathBox : MonoBehaviour
 {
     public PlayerController player;
     public Pipe pipe;
+    public GameController gameController;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Ball>() != null)
         {
-            pipe.SpawnBall(other.GetComponent<Ball>().isLayerTwo? 1 : 0);
+            if (!other.GetComponent<Ball>().isLayerTwo)
+            {
+                pipe.SpawnBall(1);
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                player.OnDamage();
+            }
+
+            bool isLeft = other.gameObject.GetComponent<Ball>().isLeftPlayer;
             Destroy(other.gameObject);
-            player.OnDamage();
-            
+            CheckBalls(isLeft);
+        }
+    }
+
+    private void CheckBalls(bool isLeftPlayer)
+    {
+        bool isLastLeftBall = true;
+        bool isLastRightBall = true;
+
+        if (GameObject.FindGameObjectsWithTag("Ball").Length <= 1)
+        {
+            gameController.EndGame(isLeftPlayer);
+            return;
+        }
+        
+        print(GameObject.FindGameObjectsWithTag("Ball").Length);
+        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball")) 
+        {
+            if (ball.GetComponent<Ball>().isLeftPlayer)
+            {
+                isLastLeftBall = false;
+            }
+            else
+            {
+                isLastRightBall = false;
+            }
+        }
+
+        if (isLastLeftBall)
+        {
+            gameController.EndGame(true);
+        }
+
+        if (isLastRightBall)
+        {
+            //gameController.EndGame(false);
         }
     }
 }

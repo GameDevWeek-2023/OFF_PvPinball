@@ -20,12 +20,30 @@ public class Pipe : MonoBehaviour
 
     private bool canSpawn = true;
 
+    public int startBalls;
+    public int startGhostBalls;
+
+    private bool gameStarted = false;
+
+    private Coroutine spawnRoutine;
 
     private void Start()
     {
-        StartCoroutine(SpawnRoutine());
+        LoadBalls();
     }
 
+    public void LoadBalls()
+    {
+        for (int i = 0; i < startBalls; i++)
+        {
+            ballQueue.Add(0);
+        }
+        
+        for (int i = 0; i < startGhostBalls; i++)
+        {
+            ballQueue.Add(1);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         print("bla");
@@ -55,6 +73,7 @@ public class Pipe : MonoBehaviour
         b.gameObject.GetComponent<Rigidbody>().AddForce(exitPoint.forward * force);
     }
 
+
     IEnumerator SpawnDelay(Rigidbody rig)
     {
         canSpawn = false;
@@ -63,7 +82,6 @@ public class Pipe : MonoBehaviour
         
         canSpawn = true;
     }
-
     IEnumerator SpawnRoutine()
     {
         while (true)
@@ -104,8 +122,37 @@ public class Pipe : MonoBehaviour
                 ballQueue.Add(1);
             }
         }
-        
     }
-    
-    
+
+    public void StartGame()
+    {
+        if (spawnRoutine != null)
+        {
+            StopCoroutine(spawnRoutine);
+        }
+        spawnRoutine = StartCoroutine(SpawnRoutine());
+    }
+
+    public void StopGame()
+    {
+        if (spawnRoutine != null)
+        {
+            StopCoroutine(spawnRoutine);
+        }
+    }
+
+    void OnStart()
+    {
+        if (!gameStarted)
+        {
+            print("start");
+            gameStarted = true;
+            
+        }
+    }
+
+    public void ClearQueue()
+    {
+        ballQueue.Clear();
+    }
 }

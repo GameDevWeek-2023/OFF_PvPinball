@@ -9,6 +9,8 @@ public class Ball : MonoBehaviour
     public Rigidbody rigBody;
 
     public bool isLayerTwo;
+    public bool isLeftPlayer = true;
+    
     private void Update()
     {
         lastVelocity = rigBody.velocity;

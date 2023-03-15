@@ -9,6 +9,7 @@ public class Spring : MonoBehaviour
 
     public List<GameObject> balls = new List<GameObject>();
     public float force = 10;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +31,7 @@ public class Spring : MonoBehaviour
             }
         }
         
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         Barrier.SetActive(true);
     }
 }
