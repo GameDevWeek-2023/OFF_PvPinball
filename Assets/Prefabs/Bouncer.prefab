@@ -46,9 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac17b4d5308d9a4890f07f1680fa5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlowRenderer: {fileID: 0}
-  speedMultiplier: 5
-  standertForce: 1000
+  GlowRenderer: {fileID: 5938255749768052884}
+  Rotoren: {fileID: 214002284062484002}
+  speed: 0.05
+  maxSpeed: 2
+  minSpeed: 0.3
+  minColor: {r: 0.9150943, g: 0.8252213, b: 0.2460395, a: 1}
+  maxColor: {r: 66.27917, g: 2.0820682, b: 0, a: 0}
+  stateAbfall: 0.01
+  stateAufbau: 0.04
+  curendState: 0
+  sollState: 0
+  speedMultiplier: 7
+  standertForce: 1200
 --- !u!135 &6436225967221641306
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -139,6 +149,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7664728788398519507, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b9c13727602464439cc54b4a27bc0db, type: 2}
     - target: {fileID: 705342398498059568, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -171,6 +186,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5a68078dce3692344a156c69c723e086, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3, type: 3}
+--- !u!1 &214002284062484002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2045257923548263128, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7018157640478944010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5938255749768052884 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3678716406857755550, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7018157640478944010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7417209018102156513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5591e5dcc67c4ac4fb0a8a407aa39af3,
