@@ -16,7 +16,10 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<WallBounce>() != null)
+
+
+        /* Jetzt IN WallBouncern
+        if(collision.gameObject.GetComponent<WallBounce>() != null)
         {
             WallBounce wallBounce = collision.gameObject.GetComponent<WallBounce>();
             
@@ -25,5 +28,6 @@ public class Ball : MonoBehaviour
             var direction = collision.transform.position + transform.position; 
             rigBody.velocity = direction * speed * wallBounce.speedMultiplier;
         }
+        */
     }
 }
