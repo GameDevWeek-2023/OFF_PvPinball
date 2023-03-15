@@ -71,7 +71,7 @@ public class Pipe : MonoBehaviour
             b = Instantiate(ballLayerTwo, exitPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
         }
         
-        b.gameObject.GetComponent<Rigidbody>().AddForce(exitPoint.forward * force);
+        b.gameObject.GetComponent<Rigidbody>().AddForce(exitPoint.forward * spawnForce, ForceMode.Impulse);
     }
 
 
