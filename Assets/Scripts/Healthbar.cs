@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    public Transform barPlayerLeft;
-    public Transform barPlayerRight;
+    public TextMeshProUGUI hpLeft;
+    public TextMeshProUGUI hpRight;
 
     public int maxHitPoints;
 
@@ -23,12 +24,15 @@ public class Healthbar : MonoBehaviour
         if (player == 0)
         {
             hitPointsPlayerLeft = hp;
+            hpLeft.text = hitPointsPlayerLeft.ToString();
         }
         else
         {
             hitPointsPlayerRight = hp;
+            hpRight.text = hitPointsPlayerRight.ToString();
         }
 
+        /*
         if (player == 0)
         {
             for (int i = 0; i < hitPointsPlayerLeft; i++)
@@ -49,14 +53,14 @@ public class Healthbar : MonoBehaviour
                 image.color = Color.green;
                 hitPointsRight.Add(right);
             }
-        }
+        }*/
         
     }
     
     // 0 left, 1 right
     public void RemoveHeart(int player)
     {
-        if (player == 0)
+        /*if (player == 0)
         {
             if (hitPointsPlayerLeft != null && hitPointsLeft.Count > 0)
             {
@@ -73,7 +77,23 @@ public class Healthbar : MonoBehaviour
                 hitPointsRight.RemoveAt(0);
                 Destroy(bla);
             }
+        }*/
+        
+        if (player == 0)
+        {
+            hitPointsPlayerLeft--;
+            hpLeft.text = hitPointsPlayerLeft.ToString();
         }
+
+        else
+        {
+            hitPointsPlayerRight--;
+            hpRight.text = hitPointsPlayerRight.ToString();
+        }
+    }
+
+    public void LooseHp(int player)
+    {
         
     }
 }

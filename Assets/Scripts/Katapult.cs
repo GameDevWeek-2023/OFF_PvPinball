@@ -50,7 +50,7 @@ public class Katapult : MonoBehaviour
             currentBall = null;
             
             var b = Instantiate(ball, ballPoint.transform.position, Quaternion.identity);
-            b.GetComponent<Rigidbody>().AddForce(ballPoint.forward * shootForce);
+            b.GetComponent<Rigidbody>().AddForce(ballPoint.forward * shootForce, ForceMode.Impulse);
          }
          
          rig.AddTorque(pivot.forward * 10);
