@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class WallBounce : MonoBehaviour
 {
@@ -16,11 +17,17 @@ public class WallBounce : MonoBehaviour
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
     public Color minColor, maxColor;
 
-    public float stateAbfall,stateAufbau;
+    public float stateAbfall,stateAufbau , maxPartikleSpawn;
     [SerializeField]
     float curendState,sollState;
     public float speedMultiplier = 1.5f;
     public float standertForce = 10f;
+    [SerializeField]
+    private VisualEffect visualEffect;
+    private void Start()
+    {
+        visualEffect = GetComponent<VisualEffect>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -50,7 +57,7 @@ public class WallBounce : MonoBehaviour
 
         sollState = Mathf.Clamp01(sollState - stateAbfall);
         Rotoren.transform.localRotation *= Quaternion.AngleAxis(speed , Vector3.up) ;
-
+        visualEffect.SetFloat("SparnRate", Mathf.Lerp(0, maxPartikleSpawn, curendState));
     }
 
 }
