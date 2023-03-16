@@ -31,13 +31,18 @@ public class LeverControllerTest : MonoBehaviour
 
     private void Start()
     {
-        flipperLeftMinAngle = flipperLeft.eulerAngles.y;
-        flipperRightMinAngle = flipperRight.eulerAngles.y;
+        flipperLeftMinAngle = flipperLeft.localEulerAngles.y;
+        flipperRightMinAngle = flipperRight.localEulerAngles.y;
 
         flipperLeftMaxAngle = flipperLeftMinAngle - flipperRotationAngle;
         flipperRightMaxAngle = flipperRightMinAngle + flipperRotationAngle;
     }
 
+    private void FixedUpdate()
+    {
+        rigLeft.AddTorque(Vector3.up * 100);
+        
+    }
     private void LateUpdate()
     {
         //flipperLeft.transform.position = startValuesLeft;
@@ -48,74 +53,76 @@ public class LeverControllerTest : MonoBehaviour
         
         rigRight_L2.centerOfMass = Vector3.zero;
         rigLeft_L2.centerOfMass = Vector3.zero;
-
-        Vector3 flipperLeftAngle = flipperLeft.eulerAngles;
-        Vector3 flipperLeftAngle_L2 = flipperLeft_L2.eulerAngles;
-        Vector3 flipperRightAngle = flipperRight.eulerAngles;
-        Vector3 flipperRightAngle_L2 = flipperRight_L2.eulerAngles;
+    /*
+        Vector3 flipperLeftAngle = flipperLeft.localEulerAngles;
+        Vector3 flipperLeftAngle_L2 = flipperLeft_L2.localEulerAngles;
+        Vector3 flipperRightAngle = flipperRight.localEulerAngles;
+        Vector3 flipperRightAngle_L2 = flipperRight_L2.localEulerAngles;
         
         if (flipperLeftAngle.y <= flipperLeftMaxAngle)
         {
             rigLeft.angularVelocity = Vector3.zero;
-            flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMaxAngle, flipperLeftAngle.z);
+            flipperLeft.localEulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMaxAngle, flipperLeftAngle.z);
         }
         
         if (flipperLeftAngle_L2.y <= flipperLeftMaxAngle)
         {
             rigLeft_L2.angularVelocity = Vector3.zero;
-            flipperLeft_L2.eulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMaxAngle, flipperLeftAngle_L2.z);
+            flipperLeft_L2.localEulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMaxAngle, flipperLeftAngle_L2.z);
         }
 
         if (flipperLeftAngle.y >= flipperLeftMinAngle)
         {
             rigLeft.angularVelocity = Vector3.zero;
-            flipperLeft.eulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMinAngle, flipperLeftAngle.z);
+            flipperLeft.localEulerAngles = new Vector3(flipperLeftAngle.x, flipperLeftMinAngle, flipperLeftAngle.z);
         }
         
         if (flipperLeftAngle_L2.y >= flipperLeftMinAngle)
         {
             rigLeft_L2.angularVelocity = Vector3.zero;
-            flipperLeft_L2.eulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMinAngle, flipperLeftAngle_L2.z);
+            flipperLeft_L2.localEulerAngles = new Vector3(flipperLeftAngle_L2.x, flipperLeftMinAngle, flipperLeftAngle_L2.z);
         }
         
         if (flipperRightAngle.y >= flipperRightMaxAngle)
         {
             rigRight.angularVelocity = Vector3.zero;
-            flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMaxAngle, flipperRightAngle.z);
+            flipperRight.localEulerAngles = new Vector3(flipperRightAngle.x, flipperRightMaxAngle, flipperRightAngle.z);
         }
         
         if (flipperRightAngle_L2.y >= flipperRightMaxAngle)
         {
             rigRight_L2.angularVelocity = Vector3.zero;
-            flipperRight_L2.eulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMaxAngle, flipperRightAngle_L2.z);
+            flipperRight_L2.localEulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMaxAngle, flipperRightAngle_L2.z);
         }
 
         if (flipperRightAngle.y <= flipperRightMinAngle)
         {
             rigRight.angularVelocity = Vector3.zero;
-            flipperRight.eulerAngles = new Vector3(flipperRightAngle.x, flipperRightMinAngle, flipperRightAngle.z);
+            flipperRight.localEulerAngles = new Vector3(flipperRightAngle.x, flipperRightMinAngle, flipperRightAngle.z);
         }
         
         if (flipperRightAngle_L2.y <= flipperRightMinAngle)
         {
             rigRight_L2.angularVelocity = Vector3.zero;
-            flipperRight_L2.eulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMinAngle, flipperRightAngle_L2.z);
+            flipperRight_L2.localEulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMinAngle, flipperRightAngle_L2.z);
         }
-        
+        */
     }
     
     void OnLeftTrigger(InputValue value)
     {
         float val = value.Get<float>();
-
+        
+        print("bla");
+        
+        rigLeft.AddTorque(Vector3.up * force * -1);
         
         if (val > 0) 
         {
-            if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
+            if(flipperLeft.localEulerAngles.y > flipperLeftMaxAngle)
             {
                 rigLeft.AddTorque(Vector3.up * force * -1);
                 FindObjectOfType<AudioManager>().Play("FlipperUp");
-                    
             }
         }
         
@@ -133,7 +140,7 @@ public class LeverControllerTest : MonoBehaviour
         
         if (val > 0) 
         {
-            if (flipperLeft.eulerAngles.y > flipperLeftMaxAngle)
+            if (flipperLeft.localEulerAngles.y > flipperLeftMaxAngle)
             {
                 rigLeft_L2.AddTorque(Vector3.up * force * -1); 
                 FindObjectOfType<AudioManager>().Play("FlipperUp");
@@ -155,7 +162,7 @@ public class LeverControllerTest : MonoBehaviour
         
         if (val > 0)
         {
-            if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
+           if (flipperRight.localEulerAngles.y < flipperRightMaxAngle)
             {
                 rigRight.AddTorque(Vector3.up * force);
                 FindObjectOfType<AudioManager>().Play("FlipperUp");
@@ -176,7 +183,7 @@ public class LeverControllerTest : MonoBehaviour
 
         if (val > 0)
         {
-            if (flipperRight.eulerAngles.y < flipperRightMaxAngle)
+            if (flipperRight.localEulerAngles.y < flipperRightMaxAngle)
             {
                 rigRight_L2.AddTorque(Vector3.up * force);
                 FindObjectOfType<AudioManager>().Play("FlipperUp");
