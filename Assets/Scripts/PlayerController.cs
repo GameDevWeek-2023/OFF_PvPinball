@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        healthbar.InitHitPoints(playerID, hitPoints);
+        //healthbar.InitHitPoints(playerID, hitPoints);
     }
 
     public void OnDamage()
     {
         hitPoints--;
-        healthbar.RemoveHeart(playerID);
+        //healthbar.RemoveHeart(playerID);
     }
 }

@@ -9,6 +9,8 @@ public class DeathBox : MonoBehaviour
     public PlayerController player;
     public Pipe pipe;
     public GameController gameController;
+
+    public bool isLeft = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<Ball>() != null)
@@ -21,6 +23,14 @@ public class DeathBox : MonoBehaviour
             else
             {
                 player.OnDamage();
+                if (this.isLeft)
+                {
+                    gameController.OnHitLeft();
+                }
+                else
+                {
+                    gameController.OnHitRight();
+                }
             }
 
             bool isLeft = other.gameObject.GetComponent<Ball>().isLeftPlayer;

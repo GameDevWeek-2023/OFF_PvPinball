@@ -17,7 +17,13 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI timerText, endGameTimerText, winnerText;
     public GameObject endScreen;
     public GameObject pauseScreen;
+    
+    public Healthbar healthbar;
 
+    public int totalStartingBalls = 3;
+
+    public int ballCountLeft;
+    public int ballCountRight;
 
     private void Start()
     {
@@ -25,6 +31,11 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(false);
         pauseScreen.SetActive(false);
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
+
+        ResetBallCounts();
+        
+        healthbar.InitHitPoints(0,totalStartingBalls);
+        healthbar.InitHitPoints(1,totalStartingBalls);
     }
 
     private void Update()
@@ -58,6 +69,7 @@ public class GameController : MonoBehaviour
     
     public void OnStart()
     {
+        ResetBallCounts();
         endScreen.SetActive(false);
         if (!gameStarted && !isPlaying && !isPaused)
         {
@@ -123,6 +135,7 @@ public class GameController : MonoBehaviour
         TogglePipes(false);
         ResetPipes();
         DestroyBalls();
+        ResetBallCounts();
         timer = 0;
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
@@ -179,7 +192,23 @@ public class GameController : MonoBehaviour
         {
             startPipeRight.canShoot = val;
         }
-        
-        
+    }
+
+    public void OnHitLeft()
+    {
+        ballCountLeft--;
+        healthbar.RemoveHeart(0, ballCountLeft);
+    }
+
+    public void OnHitRight()
+    {
+        ballCountRight--;
+        healthbar.RemoveHeart(1, ballCountRight);
+    }
+
+    public void ResetBallCounts()
+    {
+        ballCountLeft = totalStartingBalls;
+        ballCountRight = totalStartingBalls;
     }
 }
