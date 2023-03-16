@@ -17,7 +17,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 1
+    resampleCurves: 0
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Eat
-      takeName: Scene
+      name: Armature|Hit
+      takeName: Armature|Hit
       internalID: -623603649343465320
       firstFrame: 0
-      lastFrame: 4
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -67,11 +67,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
-      takeName: Scene
+      name: Armature|Idle
+      takeName: Armature|Idle
       internalID: -8800838248204228948
-      firstFrame: 13
-      lastFrame: 15
+      firstFrame: 0
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -96,11 +96,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Loop
-      takeName: Scene
+      name: Armature|HitLoop
+      takeName: Armature|HitLoop
       internalID: 5690475035124461754
-      firstFrame: 4
-      lastFrame: 9
+      firstFrame: 0
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -125,11 +125,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Spucken
-      takeName: Scene
+      name: Armature|Shoot
+      takeName: Armature|Shoot
       internalID: 1963079803359675471
-      firstFrame: 9.5
-      lastFrame: 13
+      firstFrame: 0
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

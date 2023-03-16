@@ -9,6 +9,8 @@ public class Spring : MonoBehaviour
 
     public List<GameObject> balls = new List<GameObject>();
     public float force = 10;
+
+    public float barrierTime = 0.75f;
     
 
     private void OnTriggerEnter(Collider other)
@@ -27,11 +29,11 @@ public class Spring : MonoBehaviour
         {
             if (ball != null)
             {
-                ball.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+                ball.GetComponent<Rigidbody>().AddForce(transform.forward * force, ForceMode.Impulse);
             }
         }
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(barrierTime);
         Barrier.SetActive(true);
     }
 }
