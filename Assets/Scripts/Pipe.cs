@@ -47,12 +47,19 @@ public class Pipe : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        print("bla");
         if (collision.gameObject.GetComponent<Ball>() != null)
         {
-            print("ball hit");
             StartCoroutine(TravelBall(collision.gameObject.GetComponent<Ball>().isLayerTwo));
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Ball>() != null)
+        {
+            StartCoroutine(TravelBall(other.gameObject.GetComponent<Ball>().isLayerTwo));
+            Destroy(other.gameObject);
         }
     }
 
