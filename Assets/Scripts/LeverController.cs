@@ -26,6 +26,11 @@ public class LeverController : MonoBehaviour
     public float flipperRotationAngle;
 
     public bool controlHeld;
+
+    public Vector3 quatL;
+    public Vector3 quatL2;
+    public Vector3 quatR;
+    public Vector3 quatR2;
     
     
 
@@ -36,6 +41,11 @@ public class LeverController : MonoBehaviour
 
         flipperLeftMaxAngle = flipperLeftMinAngle - flipperRotationAngle;
         flipperRightMaxAngle = flipperRightMinAngle + flipperRotationAngle;
+        
+        quatL = flipperLeft.localEulerAngles;
+        quatL2 = flipperLeft_L2.localEulerAngles;
+        quatR = flipperRight.localEulerAngles;
+        quatR2 = flipperRight_L2.localEulerAngles;
     }
 
     private void LateUpdate()
@@ -49,6 +59,7 @@ public class LeverController : MonoBehaviour
         rigRight_L2.centerOfMass = Vector3.zero;
         rigLeft_L2.centerOfMass = Vector3.zero;
 
+        
         Vector3 flipperLeftAngle = flipperLeft.eulerAngles;
         Vector3 flipperLeftAngle_L2 = flipperLeft_L2.eulerAngles;
         Vector3 flipperRightAngle = flipperRight.eulerAngles;
@@ -102,6 +113,10 @@ public class LeverController : MonoBehaviour
             flipperRight_L2.eulerAngles = new Vector3(flipperRightAngle_L2.x, flipperRightMinAngle, flipperRightAngle_L2.z);
         }
         
+        flipperLeft.eulerAngles = new Vector3(quatL.x, flipperLeft.eulerAngles.y, quatL.z);
+        flipperLeft_L2.eulerAngles = new Vector3(quatL2.x, flipperLeft_L2.eulerAngles.y, quatL2.z);
+        flipperRight.eulerAngles = new Vector3(quatR.x, flipperRight.eulerAngles.y, quatR.z);
+        flipperRight_L2.eulerAngles = new Vector3(quatR2.x, flipperRight_L2.eulerAngles.y, quatR2.z);
     }
     
     void OnLeftTrigger(InputValue value)
