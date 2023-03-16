@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f80252f06eaa6b4e88089201e3d8c45
+guid: 7e03a5209aed62040b75c152fa8866e6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: T_Nephetes
-    second: {fileID: 2100000, guid: 85cc7456c20a7a146bfd0b96095df891, type: 2}
+      name: T_Drosera
+    second: {fileID: 2100000, guid: f539faf703e43ea42843237590520d97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T_Drosera_Dots
+    second: {fileID: 2100000, guid: baa17d5d09c50c44f994ab5a054a7142, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -38,11 +43,40 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Hit
-      takeName: Armature|Hit
-      internalID: -623603649343465320
+      name: Armature|ArmatureAction
+      takeName: Armature|ArmatureAction
+      internalID: 4781951162920444690
       firstFrame: 0
-      lastFrame: 2
+      lastFrame: 3
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Grab
+      takeName: Armature|Grab
+      internalID: 3997614985018663949
+      firstFrame: 0
+      lastFrame: 7
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -69,38 +103,9 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|Idle
       takeName: Armature|Idle
-      internalID: -8800838248204228948
+      internalID: -8945691123924629249
       firstFrame: 0
-      lastFrame: 2
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|HitLoop
-      takeName: Armature|HitLoop
-      internalID: 5690475035124461754
-      firstFrame: 0
-      lastFrame: 2
+      lastFrame: 7
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -108,35 +113,6 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature|Shoot
-      takeName: Armature|Shoot
-      internalID: 1963079803359675471
-      firstFrame: 0
-      lastFrame: 2
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
