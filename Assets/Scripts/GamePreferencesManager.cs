@@ -63,20 +63,16 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     
     public void AddHighScore(string name, int points)
     {
-        print("adding highscore name: " + name + " points: " + points);
         ScoreData s = new ScoreData();
         s.score = points;
         s.playerName = name;
         
-        print("count before adding: " + combinedData.Count);
-        
-        combinedData.Add(combinedData.Count + addCounter, s);
+        //combinedData.Add(combinedData.Count + addCounter, s);
+        combinedData =  combinedData.OrderBy(pair => pair.Value.score).Reverse().ToDictionary(pair => pair.Key, pair => pair.Value);
+        int key = combinedData.Keys.Last();
+        combinedData[key] = s;
         combinedData =  combinedData.OrderBy(pair => pair.Value.score).Reverse().ToDictionary(pair => pair.Key, pair => pair.Value);
         
-        //TODO: swap indices, fill highscores and names.. remmove last one first and save his key;
-        
-        
-        print("count after adding: " + combinedData.Count);
         if (highscoreController != null)
         {
             FillHighscores();
