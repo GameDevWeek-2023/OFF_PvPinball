@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7fb497efff43694468e65ab494de8681
+guid: b80a79fd957ed614a98b02fc0a7ffaaa
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.011
-    second: {fileID: 2100000, guid: 1553bc184845a8f4ebce6366017b7806, type: 2}
+      name: Bouncer
+    second: {fileID: 2100000, guid: c2e91c1cdea0866479bc14e6df7baf10, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
