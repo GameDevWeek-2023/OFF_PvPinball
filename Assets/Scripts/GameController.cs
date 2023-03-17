@@ -34,6 +34,10 @@ public class GameController : MonoBehaviour
 
         ResetBallCounts();
         
+
+        
+        
+        
         healthbar.InitHitPoints(0,totalStartingBalls);
         healthbar.InitHitPoints(1,totalStartingBalls);
     }
