@@ -82,7 +82,10 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     }
     public void FillHighscores()
     {
-        highscoreController.FillHighscores();
+        if (highscoreController != null)
+        {
+            highscoreController.FillHighscores();
+        }
     }
     
     public void ResetHighscores()

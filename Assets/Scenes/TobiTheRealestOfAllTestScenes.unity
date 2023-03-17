@@ -79114,6 +79114,7 @@ GameObject:
   - component: {fileID: 2030403186}
   - component: {fileID: 2030403188}
   - component: {fileID: 2030403189}
+  - component: {fileID: 2030403190}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -79144,6 +79145,7 @@ MonoBehaviour:
   totalStartingBalls: 4
   ballCountLeft: 0
   ballCountRight: 0
+  ingameHighscoreManager: {fileID: 2030403190}
 --- !u!4 &2030403187
 Transform:
   m_ObjectHideFlags: 0
@@ -79258,6 +79260,21 @@ MonoBehaviour:
   playerRightName: 
   selectedGameMode: 0
   highscoreController: {fileID: 0}
+--- !u!114 &2030403190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030403185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425cf1b476196934ea69ee932da49d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamePreferencesManager: {fileID: 2030403189}
+  leftPlayerScore: 0
+  rightPlayerScore: 0
 --- !u!4 &2048208035 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6682284329672780542, guid: bebfe7379f90a0a41b9539644fd9acc7,
