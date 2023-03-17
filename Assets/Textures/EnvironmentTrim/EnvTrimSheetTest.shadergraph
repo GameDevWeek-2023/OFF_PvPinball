@@ -516,7 +516,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"8923d574ac82a12439d65c17495a9cbc\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"9f0c3928e9b4e5b4babd363ce21eb6db\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -897,10 +897,10 @@
         "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -538.0,
-            "y": 31.99999237060547,
-            "width": 154.99996948242188,
-            "height": 155.0
+            "x": -563.0000610351563,
+            "y": -108.0,
+            "width": 208.0,
+            "height": 339.0
         }
     },
     "m_Slots": [
@@ -1585,7 +1585,7 @@
     "m_ShaderOutputName": "Min",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.0,
+        "x": 0.25,
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
@@ -1938,7 +1938,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"0114e013dfd3724479e35f4e40b8e44f\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"0372e605dc4c75b4a9b2ac17e5789cc7\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -1983,7 +1983,7 @@
     },
     "m_Name": "Sample Texture 2D",
     "m_DrawState": {
-        "m_Expanded": false,
+        "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
             "x": -492.99993896484377,
@@ -2057,7 +2057,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"77d7485df6aa1f242805453444a90c48\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"971c2dd75d9132946a163a6478b4b97b\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 3
@@ -2075,7 +2075,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"5a5ae4095f55885469c2852756dfb9bb\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"ce0240c8c352fd0499faea907441f093\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -2092,7 +2092,7 @@
     "m_ShaderOutputName": "Max",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.30000001192092898,
+        "x": 0.5,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0
@@ -2177,7 +2177,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"8ded5d500fff6ee4d86697fc98f959f0\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"0bd6448a7307e974aa4c633f9406ca8c\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
