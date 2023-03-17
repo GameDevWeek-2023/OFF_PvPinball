@@ -266,8 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goastAnim: {fileID: 955333361678191114}
   normalAnim: {fileID: 955333363747537565}
-  normalForce: 10
-  speedmul: 1
+  normalForce: 20
+  speedmul: 1.32
+  VelocityStop: 0.37
 --- !u!1 &955333363747537510
 GameObject:
   m_ObjectHideFlags: 0

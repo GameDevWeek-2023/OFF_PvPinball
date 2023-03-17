@@ -9,6 +9,6 @@ PhysicMaterial:
   m_Name: Flipper
   dynamicFriction: 0.01
   staticFriction: 0.01
-  bounciness: 0.4
+  bounciness: 0.6
   frictionCombine: 0
   bounceCombine: 3
