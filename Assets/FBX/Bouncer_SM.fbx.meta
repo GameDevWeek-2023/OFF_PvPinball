@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Bouncer
     second: {fileID: 2100000, guid: c2e91c1cdea0866479bc14e6df7baf10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emission
+    second: {fileID: 2100000, guid: e4d6967f0fe565d4bbf6d754d6c902d5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
