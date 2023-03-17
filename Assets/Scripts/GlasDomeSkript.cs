@@ -13,6 +13,7 @@ public class GlasDomeSkript : MonoBehaviour
     public float maxForceDistanz = 1;
     public float speedMultyplier = 0.5f;
     public float standertForce = 5;
+    public float HitCount = 3;
     private void Awake()
     {
         splitter = GetComponentsInChildren<Rigidbody>();
@@ -49,7 +50,12 @@ public class GlasDomeSkript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-       
+        HitCount -= 1;
+        if(HitCount == 0)
+        {
+            GetComponent<Collider>().isTrigger = true;
+        }
+
     }
 
 
