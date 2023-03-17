@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Ringstreifen
+  m_Name: Shader Graphs_Ringstreifen 1
   m_Shader: {fileID: -6465566751694194690, guid: cae35bc0d0d0b2543a9c51cc12c2a6c6,
     type: 3}
   m_ValidKeywords: []
@@ -47,7 +47,7 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_1: {r: 0.23319712, g: 8.395097, b: 22.270325, a: 1}
+    - _Color_1: {r: 0.93333334, g: 0.30588236, b: 0.14509805, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6880889782082216664
 MonoBehaviour:
