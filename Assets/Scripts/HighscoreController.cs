@@ -51,7 +51,7 @@ public class HighscoreController : MonoBehaviour
 
     IEnumerator InitScrollbar()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.02f);
         scrollbar.value = 1;
     }
 }
