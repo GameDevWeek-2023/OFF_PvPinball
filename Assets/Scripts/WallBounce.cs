@@ -53,7 +53,7 @@ public class WallBounce : MonoBehaviour
             }
 
             speed = Mathf.Lerp(minSpeed, maxSpeed, curendState);
-            GlowRenderer.material.SetColor("_EmissionColor", Color.Lerp(minColor, maxColor, curendState));
+            GlowRenderer.material.SetColor("_Color_1", Color.Lerp(minColor, maxColor, curendState));
         }
 
         sollState = Mathf.Clamp01(sollState - stateAbfall);

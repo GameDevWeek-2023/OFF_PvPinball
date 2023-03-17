@@ -50,7 +50,6 @@ public class DeathBox : MonoBehaviour
             return;
         }
         
-        print(GameObject.FindGameObjectsWithTag("Ball").Length);
         foreach (GameObject ball in GameObject.FindGameObjectsWithTag("Ball")) 
         {
             if (ball.GetComponent<Ball>().isLeftPlayer)
