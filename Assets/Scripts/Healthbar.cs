@@ -58,7 +58,7 @@ public class Healthbar : MonoBehaviour
     }
     
     // 0 left, 1 right
-    public void RemoveHeart(int player)
+    public void RemoveHeart(int player, int amount)
     {
         /*if (player == 0)
         {
@@ -82,13 +82,13 @@ public class Healthbar : MonoBehaviour
         if (player == 0)
         {
             hitPointsPlayerLeft--;
-            hpLeft.text = hitPointsPlayerLeft.ToString();
+            hpLeft.text = amount.ToString();
         }
 
         else
         {
             hitPointsPlayerRight--;
-            hpRight.text = hitPointsPlayerRight.ToString();
+            hpRight.text = amount.ToString();
         }
     }
 
