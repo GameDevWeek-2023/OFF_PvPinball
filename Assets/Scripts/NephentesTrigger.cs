@@ -8,12 +8,12 @@ public class NephentesTrigger : MonoBehaviour
 
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
     public Color scoreColor;
+    private IngameHighscoreManager ihm;
+    AudioManager audioManager;
 
     public Nephentes nephentes;
     public bool hasBall;
     public Animator animator;
-    private IngameHighscoreManager ihm;
-    AudioManager audioManager;
     public Transform exitPoint;
     public GameObject ballPrefab;
 

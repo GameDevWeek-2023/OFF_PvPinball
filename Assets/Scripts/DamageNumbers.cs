@@ -14,6 +14,9 @@ public class DamageNumbers : MonoBehaviour
     private Vector3 force;
     TextMeshPro text;
     private Camera cam;
+    private float punkte;
+
+    public float minScale , maxScale;
 
     private void Awake()
     {
@@ -24,6 +27,7 @@ public class DamageNumbers : MonoBehaviour
 
     public void Aktivate(float number,Transform pos,Vector3 force,Color color)
     {
+        punkte = number;
         Debug.Log("Aktivate");
         this.gameObject.SetActive(true);
         transform.position = pos.position + Vector3.up * ofsetY ;
@@ -37,7 +41,8 @@ public class DamageNumbers : MonoBehaviour
     private void Update()
     {
         CurendTime += Time.deltaTime;
-        transform.localScale = new Vector3(scaleCureveX.Evaluate(CurendTime / LiveTeim) , scaleCureveY.Evaluate(CurendTime / LiveTeim), 1);
+        float t = punkte / 3000;
+        transform.localScale =  Mathf.Lerp(minScale,maxScale,t)  * new Vector3(scaleCureveX.Evaluate(CurendTime / LiveTeim) , scaleCureveY.Evaluate(CurendTime / LiveTeim), 1);
         transform.position +=  (force + Vector3.up) * Speed * Time.deltaTime;
         transform.forward = transform.position - cam.transform.position;
 
