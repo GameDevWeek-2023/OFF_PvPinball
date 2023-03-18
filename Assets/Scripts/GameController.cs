@@ -46,7 +46,10 @@ public class GameController : MonoBehaviour
         if (gameStarted)
         {
             timer += Time.deltaTime;
-            timerText.text = timer.ToString("F2");
+            if (timerText != null)
+            {
+                timerText.text = timer.ToString("F2");
+            }
         }
     }
 
@@ -215,5 +218,10 @@ public class GameController : MonoBehaviour
     {
         ballCountLeft = totalStartingBalls;
         ballCountRight = totalStartingBalls;
+    }
+
+    void OnSave()
+    {
+        ingameHighscoreManager.SaveHighScore();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class IngameHighscoreManager : MonoBehaviour
@@ -10,10 +11,14 @@ public class IngameHighscoreManager : MonoBehaviour
     public GameObject[] scoreBoards;
     public GameObject scoreBoard;
     private int lastScoreBoard = 0;
+
+    public TextMeshProUGUI scoreLeft;
+    public TextMeshProUGUI scoreRight;
     public void ResetPlayerPoints()
     {
         leftPlayerScore = 0;
         rightPlayerScore = 0;
+        UpdateUI();
     }
 
     private void Awake()
@@ -46,10 +51,12 @@ public class IngameHighscoreManager : MonoBehaviour
         {
             rightPlayerScore += points;
         }
+        UpdateUI(); 
     }
 
     public void SaveHighScore()
     {
+        print("saving highscore");
         if (leftPlayerScore > 0)
         {
             gamePreferencesManager.AddHighScore(gamePreferencesManager.playerLeftName, leftPlayerScore);
@@ -61,5 +68,11 @@ public class IngameHighscoreManager : MonoBehaviour
         }
 
         ResetPlayerPoints();
+    }
+
+    public void UpdateUI()
+    {
+        scoreLeft.text = leftPlayerScore.ToString();
+        scoreRight.text = rightPlayerScore.ToString();
     }
 }
