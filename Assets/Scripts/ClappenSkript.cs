@@ -7,7 +7,7 @@ public class ClappenSkript : ScorebelObjeckt
     Renderer renderer;
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
     public Color emisionColor;
-    bool hit = false , resettet = true;
+    bool hit = false;
     private Quaternion startRotation;
     float rotationSpeed = 0.002f;
     Quaternion sollRot;
@@ -30,15 +30,6 @@ public class ClappenSkript : ScorebelObjeckt
         renderer.material.SetColor("_EmissionColor", emisionColor);
         Score(transform);
         hit = true;
-        resettet = false;
-        if(otherClaps[0].hit && otherClaps[1].hit)
-        {
-            Reset();
-            otherClaps[0].Reset();
-            otherClaps[1].Reset();
-
-        }
-
     }
     public void Reset()
     {
@@ -47,23 +38,28 @@ public class ClappenSkript : ScorebelObjeckt
     }
     private void Update()
     {
-            if(hit)
+            if(hit && rotation >= 0)
             {
-                transform.localRotation = Quaternion.Lerp(sollRot, startRotation, rotation);
                 rotation -= rotationSpeed;
+                transform.localRotation = Quaternion.Lerp(sollRot, startRotation, rotation);
+                if(rotation <= 0)
+                {
+                    if (otherClaps[0].hit && otherClaps[1].hit)
+                    {
+                    Reset();
+                    otherClaps[0].Reset();
+                    otherClaps[1].Reset();
+
+                    }
+                }
             }
             else
             {
                 transform.localRotation = Quaternion.Lerp(sollRot, startRotation, rotation);
                 rotation += rotationSpeed;
-                if(resettet! && rotation <= 1)
-            {
-                resettet = true;
-                GetComponent<Collider>().enabled = true;
             }
-
-            }
-            rotation = Mathf.Clamp01(rotation);
+        rotation = Mathf.Clamp01(rotation);
+            
     }
 
 
