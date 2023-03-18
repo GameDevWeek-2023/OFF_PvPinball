@@ -15,6 +15,9 @@ public class GamemodeManager : MonoBehaviour
     [SerializeField] private TMP_InputField numberOfGhostBallsInput = null;
 
     [SerializeField] private TMP_Dropdown dropDown;
+    [SerializeField] private TMP_Dropdown timeSelectDropDown;
+
+    [SerializeField] private GameObject timeSelector;
     
     public bool isSinglePlayer;
 
@@ -47,6 +50,16 @@ public class GamemodeManager : MonoBehaviour
         {
             dropDown.value = gamePreferencesManager.selectedGameMode;
         }
+
+        timeSelectDropDown.value = gamePreferencesManager.selectedTime;
+        if (gamePreferencesManager.selectedGameMode == 1)
+        {
+            timeSelector.SetActive(true);
+        }
+        else
+        {
+            timeSelector.SetActive(false);
+        }
         
     }
 
@@ -78,18 +91,44 @@ public class GamemodeManager : MonoBehaviour
             case(0): 
                 currentGameMode = GameMode.DEFAULT;
                 gamePreferencesManager.SetGameMode(0);
+                timeSelector.SetActive(false);
                 break;
             case(1): 
                 currentGameMode = GameMode.TIMER;
                 gamePreferencesManager.SetGameMode(1);
+                timeSelector.SetActive(true);
                 break;
             case(2): 
                 currentGameMode = GameMode.ENDLESS;
                 gamePreferencesManager.SetGameMode(2);
+                timeSelector.SetActive(false);
                 break;
             case(3): 
                 currentGameMode = GameMode.COOP;
                 gamePreferencesManager.SetGameMode(3);
+                timeSelector.SetActive(false);
+                break;
+        }
+    }
+
+    public void SaveSelectedTime()
+    {
+        switch (timeSelectDropDown.value)
+        {
+            case(0):
+                gamePreferencesManager.SetSelectedTime(0);
+                break;
+            case(1):
+                gamePreferencesManager.SetSelectedTime(1);
+                break;
+            case(2):
+                gamePreferencesManager.SetSelectedTime(2);
+                break;
+            case(3):
+                gamePreferencesManager.SetSelectedTime(3);
+                break;
+            case(4):
+                gamePreferencesManager.SetSelectedTime(4);
                 break;
         }
     }

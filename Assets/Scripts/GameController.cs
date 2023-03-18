@@ -35,7 +35,10 @@ public class GameController : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
 
         ResetBallCounts();
-        ingameHighscoreManager.ResetPlayerPoints();
+        if (ingameHighscoreManager != null)
+        {
+            ingameHighscoreManager.ResetPlayerPoints();
+        }
         
         healthbar.InitHitPoints(0,totalStartingBalls);
         healthbar.InitHitPoints(1,totalStartingBalls);
@@ -71,7 +74,10 @@ public class GameController : MonoBehaviour
         }
         
         endScreen.SetActive(true);
-        ingameHighscoreManager.SaveHighScore();
+        if (ingameHighscoreManager != null)
+        {
+            ingameHighscoreManager.SaveHighScore();
+        }
     }
     
     public void OnStart()
@@ -101,7 +107,10 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(false);
         timerText.text = "0.00";
         isPlaying = false;
-        ingameHighscoreManager.ResetPlayerPoints();
+        if (ingameHighscoreManager != null)
+        {
+            ingameHighscoreManager.ResetPlayerPoints();
+        }
         ResetPipes();
     }
 
@@ -149,7 +158,11 @@ public class GameController : MonoBehaviour
         gameStarted = false;
         isPaused = false;
         PlayAgain();
-        ingameHighscoreManager.ResetPlayerPoints();
+        
+        if (ingameHighscoreManager != null)
+        {
+            ingameHighscoreManager.ResetPlayerPoints();
+        }
     }
 
     public void DestroyBalls()

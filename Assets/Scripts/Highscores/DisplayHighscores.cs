@@ -7,6 +7,7 @@ public class DisplayHighscores : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI[] rNames;
     public TMPro.TextMeshProUGUI[] rScores;
+    public Scrollbar scrollbar;
     HighScores myScores;
 
     void Start() //Fetches the Data at the beginning
@@ -35,7 +36,24 @@ public class DisplayHighscores : MonoBehaviour
         while(true)
         {
             myScores.DownloadScores();
-            yield return new WaitForSeconds(30);
+            if (scrollbar != null)
+            {
+                scrollbar.value = 1;
+            }
+            
+            yield return new WaitForSeconds(5);
+            StartCoroutine(InitScrollbar());
         }
     }
+
+    public void InitSB()
+    {
+        StartCoroutine(InitScrollbar());
+    }
+    IEnumerator InitScrollbar()
+    { 
+        yield return new WaitForSeconds(0.02f);
+        scrollbar.value = 1;
+    }
+    
 }
