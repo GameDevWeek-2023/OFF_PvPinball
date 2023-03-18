@@ -40,6 +40,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public GamemodeManager singlelayerManager;
     public GamemodeManager multiplayerManager;
 
+    public GameController gameController;
+
     public Pipe ballSpawner;
     
     const string glyphs= "abcdefg$$anonymous$$jklmnopqrstuvwxyz0123456789";
@@ -61,6 +63,11 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         {
             ballSpawner.startBalls = numberOfBalls;
             ballSpawner.startGhostBalls = numberOfGhostBalls;
+        }
+
+        if (gameController != null)
+        {
+            gameController.InitHP(hpLeft, hpRight);
         }
     }
 
@@ -164,16 +171,16 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         RefreshGamemodeController();
     }
 
-    public void SetHPLeft(int val)
+    public void SetHPLeft(int id)
     {
-        hpLeft = val;
+        hpLeft = id;
         SaveGameData();
         RefreshGamemodeController();
     }
 
-    public void SetHPRight(int val)
+    public void SetHPRight(int id)
     {
-        hpRight = val;
+        hpRight = id;
         SaveGameData();
         RefreshGamemodeController();
     }
@@ -289,6 +296,15 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         selectedTime = highscoreData.selectedTime;
         hpLeft = highscoreData.hpLeft;
         hpRight = highscoreData.hpRight;
+
+        if (hpLeft == 0)
+        {
+            hpLeft = 5;
+        }
+        if(hpRight == 0)
+        {
+            hpRight = 5;
+        }
         
         CombineData();
     }

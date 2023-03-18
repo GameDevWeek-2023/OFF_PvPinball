@@ -66,14 +66,15 @@ public class DeathBox : MonoBehaviour
             }
         }
 
-        if (isLastLeftBall)
+
+        if (gameController.hitPointsLeft <= 0)
         {
             gameController.EndGame(true);
         }
 
-        if (isLastRightBall)
+        if (gameController.hitPointsRight <= 0)
         {
-            //gameController.EndGame(false);
+            //gameController.EndGame(true);
         }
     }
 }
