@@ -93,3 +93,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Musi
+    clip: {fileID: 8300000, guid: 0d145865f25cccb429d598bddafb53da, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
