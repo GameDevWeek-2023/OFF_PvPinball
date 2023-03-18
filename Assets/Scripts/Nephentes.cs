@@ -19,8 +19,11 @@ public class Nephentes : MonoBehaviour
 
     private void Start()
     {
-        startRotation = pivot.localRotation;
-        endRotation = startRotation * Quaternion.AngleAxis(rotationAngle, Vector3.up);
+        if (pivot != null)
+        {
+            startRotation = pivot.localRotation;
+            endRotation = startRotation * Quaternion.AngleAxis(rotationAngle, Vector3.up);
+        }
         //StartCoroutine(RotateNephentes(true));
     }
 
@@ -31,14 +34,19 @@ public class Nephentes : MonoBehaviour
             isRotating = true;
             if (isAtStart)
             {
-                StartCoroutine(RotateNephentes(true));
-                isAtStart = false;
-                
+                if (pivot != null)
+                {
+                    StartCoroutine(RotateNephentes(true));
+                    isAtStart = false;
+                }
             }
             else
             {
-                StartCoroutine(RotateNephentes(false));
-                isAtStart = true;
+                if (pivot != null)
+                {
+                    StartCoroutine(RotateNephentes(false));
+                    isAtStart = true;
+                }
             }
         }
     }

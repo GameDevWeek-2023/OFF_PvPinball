@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Mirror;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class NetworkGamePlayer : NetworkBehaviour
@@ -15,6 +16,8 @@ public class NetworkGamePlayer : NetworkBehaviour
     
 
     private bool isLeader;
+
+    public ServerLeverManager serverLeverManager;
     
 
     private CustomNetworkManager room;
@@ -30,6 +33,13 @@ public class NetworkGamePlayer : NetworkBehaviour
             return room = NetworkManager.singleton as CustomNetworkManager;
         }
     }
+    
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        serverLeverManager = FindObjectOfType<ServerLeverManager>();
+    }
+
     
     public override void OnStartClient()
     {
@@ -47,4 +57,94 @@ public class NetworkGamePlayer : NetworkBehaviour
     {
         this.displayName = displayName;
     }
+    
+   void OnLeftTrigger(InputValue value)
+    {
+        float val = value.Get<float>();
+        if (val > 0)
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperUp");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
+        }
+        print("sending command");
+        CmdLeftTrigger(val);
+    }
+    
+    
+    void OnLeftTriggerLayer2(InputValue value)
+    {
+        float val = value.Get<float>();
+        if (val > 0)
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperUp");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
+        }
+        print("sending command");
+        CmdLeftTriggerLayer2(val);
+    }
+    
+    
+    void OnRightTrigger(InputValue value)
+    {
+        float val = value.Get<float>();
+        if (val > 0)
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperUp");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
+        }
+        print("sending command");
+        CmdRightTrigger(val);
+    }
+    
+    
+    void OnRightTriggerLayer2(InputValue value)
+    {
+        float val = value.Get<float>();
+        if (val > 0)
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperUp");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
+        }
+        print("sending command");
+        CmdRightTriggerLayer2(val);
+    }
+    
+    
+    [Command]
+    public void CmdLeftTrigger(float val)
+    {
+        serverLeverManager.LeftTrigger(val);
+    }
+
+    [Command]
+    public void CmdLeftTriggerLayer2(float val)
+    {
+        serverLeverManager.LeftTriggerL2(val);
+    }
+
+    [Command]
+    public void CmdRightTrigger(float val)
+    {
+        serverLeverManager.RightTrigger(val);
+    }
+
+    [Command]
+    public void CmdRightTriggerLayer2(float val)
+    {
+        serverLeverManager.RightTriggerL2(val);
+    }
+    
+    
 }

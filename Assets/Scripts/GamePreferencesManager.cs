@@ -23,9 +23,18 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     
     public string playerLeftName = "Player 1";
     public string playerRightName = "Player 2";
+    
+    public int numberOfBalls = 2;
+    public int numberOfGhostBalls = 1;
+    
     public int selectedGameMode = 0;
 
     public HighscoreController highscoreController;
+
+    public GamemodeManager singlelayerManager;
+    public GamemodeManager multiplayerManager;
+
+    public Pipe ballSpawner;
     
     const string glyphs= "abcdefg$$anonymous$$jklmnopqrstuvwxyz0123456789";
 
@@ -40,6 +49,13 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         {
             FillHighscores();
         }
+        RefreshGamemodeController();
+
+        if (ballSpawner != null)
+        {
+            ballSpawner.startBalls = numberOfBalls;
+            ballSpawner.startGhostBalls = numberOfGhostBalls;
+        }
     }
 
     private void OnApplicationQuit()
@@ -47,6 +63,14 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         SaveGameData();
     }
 
+    public void RefreshGamemodeController()
+    {
+        if (singlelayerManager != null && multiplayerManager != null)
+        {
+            singlelayerManager.RefreshInputValues();
+            multiplayerManager.RefreshInputValues();
+        }
+    }
     public void AddRandomHighscore()
     {
         int charAmount = UnityEngine.Random.Range(3, 10); //set those to the minimum and maximum length of your string
@@ -86,6 +110,34 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         {
             highscoreController.FillHighscores();
         }
+    }
+
+    public void SetLeftName(string name)
+    {
+        playerLeftName = name;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetRightName(string name)
+    {
+        playerRightName = name;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetNumberOfBalls(int balls)
+    {
+        numberOfBalls = balls;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetNumberOfGhostBalls(int balls)
+    {
+        numberOfGhostBalls = balls;
+        SaveGameData();
+        RefreshGamemodeController();
     }
     
     public void ResetHighscores()
@@ -179,6 +231,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         highscoreData.names = names;
         highscoreData.playerLeftName = playerLeftName;
         highscoreData.playerRightName = playerRightName;
+        highscoreData.numberOfBalls = numberOfBalls;
+        highscoreData.numberOfGhostBalls = numberOfGhostBalls;
         highscoreData.selectedGameMode = selectedGameMode;
     }
 
@@ -189,6 +243,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         playerLeftName = highscoreData.playerLeftName;
         playerRightName = highscoreData.playerRightName;
         selectedGameMode = highscoreData.selectedGameMode;
+        numberOfBalls = highscoreData.numberOfBalls;
+        numberOfGhostBalls = highscoreData.numberOfGhostBalls;
         
         CombineData();
     }
