@@ -100,7 +100,7 @@ public class Pipe : MonoBehaviour
                 {
                     if (canShoot)
                     {
-                        GameObject b = Instantiate(ball, spawnPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        GameObject b = Instantiate(ball,null);
                         Rigidbody rig = b.GetComponent<Rigidbody>();
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);
@@ -113,7 +113,7 @@ public class Pipe : MonoBehaviour
                 {
                     if (canShoot)
                     {
-                        GameObject b = Instantiate(ballLayerTwo, spawnPoint.transform.position, Quaternion.identity,UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        GameObject b = Instantiate(ballLayerTwo, null);
                         Rigidbody rig = b.GetComponent<Rigidbody>();
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);

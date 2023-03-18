@@ -13,10 +13,12 @@ public class DamageNumbers : MonoBehaviour
     public float forceScale = 0.05f;
     private Vector3 force;
     TextMeshPro text;
+    private Camera cam;
 
     private void Awake()
     {
         text = GetComponent<TextMeshPro>();
+        cam = FindFirstObjectByType<Camera>();
     }
 
 
@@ -37,7 +39,7 @@ public class DamageNumbers : MonoBehaviour
         CurendTime += Time.deltaTime;
         transform.localScale = new Vector3(scaleCureveX.Evaluate(CurendTime / LiveTeim) , scaleCureveY.Evaluate(CurendTime / LiveTeim), 1);
         transform.position +=  (force + Vector3.up) * Speed * Time.deltaTime;
-
+        transform.forward = transform.position - cam.transform.position;
 
         if(CurendTime >= LiveTeim)
         {
