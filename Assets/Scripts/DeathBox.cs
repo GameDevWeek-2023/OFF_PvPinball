@@ -17,7 +17,10 @@ public class DeathBox : MonoBehaviour
         {
             if (!other.GetComponent<Ball>().isLayerTwo)
             {
-                pipe.SpawnBall(1);
+                if (pipe != null)
+                {
+                    pipe.SpawnBall(1);
+                }
                 Destroy(other.gameObject);
             }
             else
