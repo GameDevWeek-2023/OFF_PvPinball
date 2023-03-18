@@ -27,12 +27,7 @@ public class Pipe : MonoBehaviour
 
     private Coroutine spawnRoutine;
     public bool canShoot;
-
-    private void Start()
-    {
-        LoadBalls();
-    }
-
+    
     public void LoadBalls()
     {
         for (int i = 0; i < startBalls; i++)
@@ -149,6 +144,8 @@ public class Pipe : MonoBehaviour
         {
             StopCoroutine(spawnRoutine);
         }
+        ClearQueue();
+        LoadBalls();
         spawnRoutine = StartCoroutine(SpawnRoutine());
     }
 
