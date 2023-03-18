@@ -28,7 +28,10 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public int numberOfGhostBalls = 1;
     
     public int selectedGameMode = 0;
-    public int selectedTime;
+    public int selectedTime = 2;
+
+    public int hpLeft = 5;
+    public int hpRight = 5;
 
     public int[] times = { 1, 2, 3, 5, 10 };
 
@@ -160,6 +163,20 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         SaveGameData();
         RefreshGamemodeController();
     }
+
+    public void SetHPLeft(int val)
+    {
+        hpLeft = val;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetHPRight(int val)
+    {
+        hpRight = val;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
     
     public void ResetHighscores()
     {
@@ -256,6 +273,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         highscoreData.numberOfGhostBalls = numberOfGhostBalls;
         highscoreData.selectedGameMode = selectedGameMode;
         highscoreData.selectedTime = selectedTime;
+        highscoreData.hpLeft = hpLeft;
+        highscoreData.hpRight = hpRight;
     }
 
     public void LoadFromSaveData(HighscoreData highscoreData)
@@ -268,6 +287,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         numberOfBalls = highscoreData.numberOfBalls;
         numberOfGhostBalls = highscoreData.numberOfGhostBalls;
         selectedTime = highscoreData.selectedTime;
+        hpLeft = highscoreData.hpLeft;
+        hpRight = highscoreData.hpRight;
         
         CombineData();
     }

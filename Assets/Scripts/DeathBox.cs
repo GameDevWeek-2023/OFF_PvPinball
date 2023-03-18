@@ -21,7 +21,7 @@ public class DeathBox : MonoBehaviour
                 {
                     pipe.SpawnBall(1);
                 }
-                Destroy(other.gameObject);
+                pipe.RemoveBall(other.gameObject);
             }
             else
             {
@@ -34,6 +34,7 @@ public class DeathBox : MonoBehaviour
                 {
                     gameController.OnHitRight();
                 }
+                pipe.RemoveGhostBall(other.gameObject);
             }
 
             bool isLeft = other.gameObject.GetComponent<Ball>().isLeftPlayer;

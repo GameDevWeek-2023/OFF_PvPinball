@@ -18,6 +18,9 @@ public class Pipe : MonoBehaviour
 
     public List<int> ballQueue = new List<int>();
 
+    public List<GameObject> balls = new List<GameObject>();
+    public List<GameObject> ghostBalls = new List<GameObject>();
+
     private bool canSpawn = true;
 
     public int startBalls;
@@ -27,9 +30,14 @@ public class Pipe : MonoBehaviour
 
     private Coroutine spawnRoutine;
     public bool canShoot;
+
+    public bool isLeftPlayer = true;
     
     public void LoadBalls()
     {
+        balls = new List<GameObject>();
+        ghostBalls = new List<GameObject>();
+        
         for (int i = 0; i < startBalls; i++)
         {
             ballQueue.Add(0);
@@ -101,6 +109,11 @@ public class Pipe : MonoBehaviour
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);
                         FindObjectOfType<AudioManager>().Play("BallStart");
+                        
+                        b.GetComponent<Ball>().isLeftPlayer = isLeftPlayer;
+                        b.GetComponent<Ball>().isLayerTwo = false;
+                        
+                        AddBall(b);
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                     
@@ -114,6 +127,11 @@ public class Pipe : MonoBehaviour
                         rig.AddForce(spawnPoint.forward * force);
                         ballQueue.RemoveAt(0);
                         FindObjectOfType<AudioManager>().Play("BallStart");
+                        
+                        b.GetComponent<Ball>().isLeftPlayer = isLeftPlayer;
+                        b.GetComponent<Ball>().isLayerTwo = true;
+                        
+                        AddGhostBall(b);
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                 }
@@ -122,6 +140,27 @@ public class Pipe : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
     }
+
+    public void RemoveBall(GameObject ball)
+    {
+        balls.Remove(ball);
+    }
+
+    public void RemoveGhostBall(GameObject ball)
+    {
+        ghostBalls.Remove(ball);
+    }
+
+    public void AddBall(GameObject ball)
+    {
+        balls.Add(ball);
+    }
+
+    public void AddGhostBall(GameObject ball)
+    {
+        balls.Add(ball);
+    }
+    
     public void SpawnBall(int type)
     {
         
