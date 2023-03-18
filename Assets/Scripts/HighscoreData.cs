@@ -9,6 +9,10 @@ public class HighscoreData
     public string[] names = new string[50];
     public string playerLeftName;
     public string playerRightName;
+
+    public int numberOfBalls;
+    public int numberOfGhostBalls;
+    
     public int selectedGameMode;
 
     public string ToJson()

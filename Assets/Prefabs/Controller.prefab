@@ -797,7 +797,7 @@ MonoBehaviour:
   rigLeft_L2: {fileID: 4268684342697359149}
   rigRight: {fileID: 4268684342785730743}
   rigRight_L2: {fileID: 4268684343801874970}
-  flipperRotationAngle: 20
+  flipperRotationAngle: 25
   controlHeld: 0
 --- !u!114 &4268684343790686189
 MonoBehaviour:

@@ -106,7 +106,7 @@ public class M_LeverControllerTest : NetworkBehaviour
         CmdRightTriggerLayer2(val);
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdLeftTrigger(float val)
     { 
         Debug.Log("L1L");
@@ -123,7 +123,7 @@ public class M_LeverControllerTest : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdLeftTriggerLayer2(float val)
     {
         Debug.Log("L2L");
@@ -140,7 +140,7 @@ public class M_LeverControllerTest : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdRightTrigger(float val)
     {
         print("R2");
@@ -158,7 +158,7 @@ public class M_LeverControllerTest : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdRightTriggerLayer2(float val)
     {
         print("R2L");

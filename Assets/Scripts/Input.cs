@@ -333,6 +333,15 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a4ffe62-13c2-4359-b2d9-963e91868a81"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -390,6 +399,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63d9c68e-fc67-4826-922b-041f056717c0"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -416,6 +436,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         m_Game_Start = m_Game.FindAction("Start", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         m_Game_Enter = m_Game.FindAction("Enter", throwIfNotFound: true);
+        m_Game_Save = m_Game.FindAction("Save", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -644,6 +665,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Start;
     private readonly InputAction m_Game_Pause;
     private readonly InputAction m_Game_Enter;
+    private readonly InputAction m_Game_Save;
     public struct GameActions
     {
         private @Input m_Wrapper;
@@ -651,6 +673,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
         public InputAction @Start => m_Wrapper.m_Game_Start;
         public InputAction @Pause => m_Wrapper.m_Game_Pause;
         public InputAction @Enter => m_Wrapper.m_Game_Enter;
+        public InputAction @Save => m_Wrapper.m_Game_Save;
         public InputActionMap Get() { return m_Wrapper.m_Game; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -669,6 +692,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Enter.started += instance.OnEnter;
             @Enter.performed += instance.OnEnter;
             @Enter.canceled += instance.OnEnter;
+            @Save.started += instance.OnSave;
+            @Save.performed += instance.OnSave;
+            @Save.canceled += instance.OnSave;
         }
 
         private void UnregisterCallbacks(IGameActions instance)
@@ -682,6 +708,9 @@ public partial class @Input: IInputActionCollection2, IDisposable
             @Enter.started -= instance.OnEnter;
             @Enter.performed -= instance.OnEnter;
             @Enter.canceled -= instance.OnEnter;
+            @Save.started -= instance.OnSave;
+            @Save.performed -= instance.OnSave;
+            @Save.canceled -= instance.OnSave;
         }
 
         public void RemoveCallbacks(IGameActions instance)
@@ -721,5 +750,6 @@ public partial class @Input: IInputActionCollection2, IDisposable
         void OnStart(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnEnter(InputAction.CallbackContext context);
+        void OnSave(InputAction.CallbackContext context);
     }
 }
