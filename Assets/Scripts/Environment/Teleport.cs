@@ -20,7 +20,6 @@ public class Teleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        forward = 
         vfx.SetFloat("SpawnRate", rate);
         rate -= 0.1f;
     }
