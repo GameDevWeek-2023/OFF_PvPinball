@@ -14,8 +14,10 @@ public class HighscoreData
     public int numberOfGhostBalls;
     
     public int selectedGameMode;
-
     public int selectedTime;
+    
+    public int hpLeft;
+    public int hpRight;
 
     public string ToJson()
     {
