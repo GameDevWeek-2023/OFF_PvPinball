@@ -35,13 +35,13 @@ public class M_LeverControllerTest : NetworkBehaviour
         rigRight_L2.centerOfMass = Vector3.zero;
         rigLeft_L2.centerOfMass = Vector3.zero;
 
-        /*if (isClient)
+        if (isClient)
         {
             Destroy(rigLeft);
             Destroy(rigLeft_L2);
             Destroy(rigRight);
             Destroy(rigRight_L2);
-        }*/
+        }
     }
     
     private void FixedUpdate()
@@ -81,6 +81,7 @@ public class M_LeverControllerTest : NetworkBehaviour
     void OnLeftTrigger(InputValue value)
     {
         float val = value.Get<float>();
+        print("blub");
         CmdLeftTrigger(val);
     }
     
@@ -107,7 +108,7 @@ public class M_LeverControllerTest : NetworkBehaviour
 
     [Command]
     public void CmdLeftTrigger(float val)
-    {
+    { 
         Debug.Log("L1L");
         if (val > 0) 
         {
