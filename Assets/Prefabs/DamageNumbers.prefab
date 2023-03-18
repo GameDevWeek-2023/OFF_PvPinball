@@ -319,3 +319,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   Speed: 4.55
   forceScale: 0.06
+  minScale: 0.5
+  maxScale: 3

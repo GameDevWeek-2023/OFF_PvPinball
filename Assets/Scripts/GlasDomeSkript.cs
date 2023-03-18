@@ -19,8 +19,10 @@ public class GlasDomeSkript : MonoBehaviour
     private bool destroit = false , animate = false;
     public float resetTime = 10 , timeToReset = 0;
 
-    List<Vector3> startPos, bodenPos;
-    List<Quaternion> startQuat,bodenQuat;
+    public float animationTime, curendAnimationTime;
+
+    public List<Vector3> startPos, bodenPos;
+    public List<Quaternion> startQuat,bodenQuat;
 
     public AnimationCurve anim;
 
@@ -42,8 +44,8 @@ public class GlasDomeSkript : MonoBehaviour
             audioManager = FindObjectOfType<AudioManager>();
         foreach(Transform child in transform)
         {
-            startPos.Add(child.position);
-            startQuat.Add(child.rotation);
+            startPos.Add(child.localPosition);
+            startQuat.Add(child.localRotation);
         }
        
 
@@ -60,11 +62,9 @@ public class GlasDomeSkript : MonoBehaviour
             var forcestreng = Mathf.Clamp01(maxForceDistanz - distanz);
             var spped = dir.normalized * forcestreng * speedMultyplier * 5 * (standertForce + balrig.velocity.magnitude * speedMultyplier);
 
-            ihm.Score(50, this.transform, spped * 3, scoreColor);
+            ihm.Score(50, this.transform, spped, scoreColor);
             splitter[i].isKinematic = false;
             splitter[i].AddForce(spped, ForceMode.Impulse);
-
-
             splitterRen[i].enabled = true;
         }
 
@@ -97,17 +97,46 @@ public class GlasDomeSkript : MonoBehaviour
             if(timeToReset >= resetTime)
             {
                 int i = 0;
+                bodenPos = new List<Vector3>();
+                bodenQuat = new List<Quaternion>();
                 foreach (Transform child in transform)
                 {
-                    bodenPos.Add(child.position);
-                    bodenQuat.Add(child.rotation);
+                    bodenPos.Add(child.localPosition);
+                    bodenQuat.Add(child.localRotation);
                     splitter[i++].isKinematic = true;
+                    curendAnimationTime = 0;
+                    
                 }
                 animate = true;
+                destroit = false;
             }
         }
+        if (animate)
+        {
+            curendAnimationTime += Time.deltaTime;
+            var t = curendAnimationTime / animationTime;
+            t = Mathf.Clamp01(t);
 
-
+            int i = 0;
+            foreach (Transform child in transform)
+            {
+                child.localPosition = Vector3.Lerp(bodenPos[i], startPos[i], t);
+                child.localRotation = Quaternion.Lerp(bodenQuat[i], startQuat[i], t);
+                i++;
+            }
+            if (t >= 1)
+            {
+                for (int j = 0; j < splitter.Length; j++)
+                {
+                    splitterRen[j].enabled = false;
+                }
+                HitCount = 3;
+                DomeRenderer.enabled = true;
+                DomeCol.enabled = true;
+                destroit = false;
+                animate = false;
+            }
+        }
     }
 
 }
