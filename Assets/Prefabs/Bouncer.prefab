@@ -54,7 +54,8 @@ MonoBehaviour:
   maxSpeed: 2
   minSpeed: 0.3
   minColor: {r: 0.93333334, g: 0.30588236, b: 0.14509805, a: 1}
-  maxColor: {r: 66.27917, g: 2.0820682, b: 0, a: 0}
+  maxColor: {r: 22.363522, g: 0.8196055, b: 0, a: 1}
+  scoreColor: {r: 4, g: 0.627451, b: 0.0627451, a: 1}
   stateAbfall: 0.01
   stateAufbau: 0.04
   maxPartikleSpawn: 600

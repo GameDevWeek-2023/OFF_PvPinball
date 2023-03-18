@@ -9,13 +9,14 @@ public class WallBounce : MonoBehaviour
 
     [SerializeField] Renderer GlowRenderer;
     Material GlowMaterial;
+    private IngameHighscoreManager ihm;
 
     public GameObject Rotoren;
     [SerializeField]
     float speed,maxSpeed, minSpeed;
 
     [ColorUsageAttribute(true, true, 0f, 8f, 0.125f, 3f)]
-    public Color minColor, maxColor;
+    public Color minColor, maxColor, scoreColor;
 
     public float stateAbfall,stateAufbau , maxPartikleSpawn;
     [SerializeField]
@@ -24,17 +25,25 @@ public class WallBounce : MonoBehaviour
     public float standertForce = 10f;
     [SerializeField]
     private VisualEffect visualEffect;
+    AudioManager audioManager;
+
     private void Start()
     {
         visualEffect = GetComponent<VisualEffect>();
+        ihm = FindFirstObjectByType<IngameHighscoreManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
             var rigidbody = collision.collider.attachedRigidbody;
-            rigidbody.AddForce((standertForce + rigidbody.velocity.magnitude * speedMultiplier) * (rigidbody.position - transform.position).normalized);
+            var direction = (rigidbody.position - transform.position).normalized;
+
+            ihm.Score(500, this.transform , -direction *rigidbody.velocity.magnitude,scoreColor);
+            rigidbody.AddForce((standertForce + rigidbody.velocity.magnitude * speedMultiplier) * direction);
             sollState = 1;
-            FindObjectOfType<AudioManager>().Play("Bumper");
+            audioManager.Play("Bumper");
+
     }
     private void Update()
     {
