@@ -17,13 +17,16 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI timerText, endGameTimerText, winnerText;
     public GameObject endScreen;
     public GameObject pauseScreen;
+
+    public GamePreferencesManager gamePreferencesManager;
     
     public Healthbar healthbar;
 
-    public int totalStartingBalls = 3;
+    public int startLeft;
+    public int startRight;
 
-    public int ballCountLeft;
-    public int ballCountRight;
+    public int hitPointsLeft;
+    public int hitPointsRight;
 
     public IngameHighscoreManager ingameHighscoreManager;
 
@@ -33,17 +36,30 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(false);
         pauseScreen.SetActive(false);
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
-
-        ResetBallCounts();
+        
         if (ingameHighscoreManager != null)
         {
             ingameHighscoreManager.ResetPlayerPoints();
         }
-        
-        healthbar.InitHitPoints(0,totalStartingBalls);
-        healthbar.InitHitPoints(1,totalStartingBalls);
     }
 
+    public void InitHP(int l, int r)
+    {
+        print("l " + l + " r " + r);
+        startLeft = l;
+        startRight = r;
+        ResetHitPoints();
+    }
+    
+    public void ResetHitPoints()
+    {
+        hitPointsLeft = startLeft;
+        hitPointsRight = startRight;
+        
+        healthbar.InitHitPoints(true,hitPointsLeft);
+        healthbar.InitHitPoints(false,hitPointsRight);
+    }
+    
     private void Update()
     {
         if (gameStarted)
@@ -82,7 +98,7 @@ public class GameController : MonoBehaviour
     
     public void OnStart()
     {
-        ResetBallCounts();
+        ResetHitPoints();
         endScreen.SetActive(false);
         if (!gameStarted && !isPlaying && !isPaused)
         {
@@ -151,7 +167,7 @@ public class GameController : MonoBehaviour
         TogglePipes(false);
         ResetPipes();
         DestroyBalls();
-        ResetBallCounts();
+        ResetHitPoints();
         timer = 0;
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
@@ -217,22 +233,16 @@ public class GameController : MonoBehaviour
 
     public void OnHitLeft()
     {
-        ballCountLeft--;
-        healthbar.RemoveHeart(0, ballCountLeft);
+        hitPointsLeft--;
+        healthbar.RemoveHeart(0, hitPointsLeft);
     }
 
     public void OnHitRight()
     {
-        ballCountRight--;
-        healthbar.RemoveHeart(1, ballCountRight);
+        hitPointsRight--;
+        healthbar.RemoveHeart(1, hitPointsRight);
     }
-
-    public void ResetBallCounts()
-    {
-        ballCountLeft = totalStartingBalls;
-        ballCountRight = totalStartingBalls;
-    }
-
+    
     void OnSave()
     {
         ingameHighscoreManager.SaveHighScore();
