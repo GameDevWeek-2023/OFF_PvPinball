@@ -90,6 +90,9 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         ScoreData s = new ScoreData();
         s.score = points;
         s.playerName = name;
+
+        
+        HighScores.UploadScore(name, points);
         
         //combinedData.Add(combinedData.Count + addCounter, s);
         combinedData =  combinedData.OrderBy(pair => pair.Value.score).Reverse().ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -103,6 +106,11 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         }
         SaveGameData();
         addCounter++;
+    }
+
+    public void SendHighScore()
+    {
+        
     }
     public void FillHighscores()
     {

@@ -124,7 +124,6 @@ public class Pipe : MonoBehaviour
                 }
             }
             
-
             yield return new WaitForSeconds(spawnDelay);
         }
     }
