@@ -107,11 +107,7 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         SaveGameData();
         addCounter++;
     }
-
-    public void SendHighScore()
-    {
-        
-    }
+    
     public void FillHighscores()
     {
         if (highscoreController != null)
@@ -144,6 +140,13 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public void SetNumberOfGhostBalls(int balls)
     {
         numberOfGhostBalls = balls;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetGameMode(int id)
+    {
+        selectedGameMode = id;
         SaveGameData();
         RefreshGamemodeController();
     }
