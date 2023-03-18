@@ -1,38 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class MusikLayers : MonoBehaviour
 {
+    public GameController gameController;
     [SerializeField] public GameObject[] ballListe;
-
-    private Rigidbody[] rigs;
+    [ItemCanBeNull] private List<Rigidbody> rigs;
+    public List<GameObject> ballslist;
+        
     // Start is called before the first frame update
     private float combinedVel = 0;
 
     void Start()
     {
-
-        for (int i = 0; i < ballListe.Length; i++)
-        {
-            rigs[i] = ballListe[i].GetComponent<Rigidbody>();
-        }
-
-            StartCoroutine(CalcVel());
+        
+        StartCoroutine(CalcVel());
     }
 
+    public void RefreshList(Rigidbody newrig)
+    {
+        ballslist = gameController.startPipeLeft.balls;
+
+        foreach (GameObject ball in ballslist)
+        {
+            rigs.Add(newrig);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         print(combinedVel);
     }
 
-    public float calculateCombinedForce(Rigidbody[] list)
+    public float calculateCombinedForce(List<Rigidbody> list)
     {
         float sum = 0;
-        for(int i = 0; i < list.Length ; i++)
+        foreach (Rigidbody _rig in rigs)
         {
-            sum += list[i].velocity.magnitude;
+            if (!_rig)
+            {
+                return sum;
+            }
+            else
+            {
+                sum += _rig.velocity.magnitude;
+            }
         }
 
         return sum;
