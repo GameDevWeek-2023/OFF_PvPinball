@@ -45,7 +45,7 @@ public class NephentesTrigger : MonoBehaviour
     {
         GameObject ball = Instantiate(ballPrefab, exitPoint.position, Quaternion.identity);
         ball.GetComponent<Rigidbody>().AddForce(exitPoint.forward * exitForce, ForceMode.Impulse);
-        ihm.Score(1200, this.transform , transform.up * 20, scoreColor);
+        ihm.Score(2500, this.transform , transform.up * 20, scoreColor);
         StartCoroutine(Wait());
     }
 

@@ -499,6 +499,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3588095383548894010}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &232647350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6224397944140262720, guid: 537cb7bee68416043b3b54c29f0aefa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317780607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &232647352 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 2955015561181689463, guid: 537cb7bee68416043b3b54c29f0aefa0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317780607}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &241273910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bdbc5afec062d6a42950d7ffc2347f28,
@@ -1713,10 +1725,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 780796290659373581, guid: 537cb7bee68416043b3b54c29f0aefa0,
+        type: 3}
+      propertyPath: ghostTarget
+      value: 
+      objectReference: {fileID: 232647350}
+    - target: {fileID: 780796290659373581, guid: 537cb7bee68416043b3b54c29f0aefa0,
+        type: 3}
+      propertyPath: spawnOffset
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 780796290659373581, guid: 537cb7bee68416043b3b54c29f0aefa0,
+        type: 3}
+      propertyPath: vfxqueue.Array.data[1]
+      value: 
+      objectReference: {fileID: 232647352}
+    - target: {fileID: 2993396342638461184, guid: 537cb7bee68416043b3b54c29f0aefa0,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5271733958879237806, guid: 537cb7bee68416043b3b54c29f0aefa0,
         type: 3}
       propertyPath: speed
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922857505905001972, guid: 537cb7bee68416043b3b54c29f0aefa0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7987557905224983078, guid: 537cb7bee68416043b3b54c29f0aefa0,
         type: 3}
@@ -1778,7 +1815,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4372661024082875461, guid: 537cb7bee68416043b3b54c29f0aefa0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 537cb7bee68416043b3b54c29f0aefa0, type: 3}
 --- !u!4 &1320303056 stripped
 Transform:
@@ -2063,12 +2101,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5690728884576089205, guid: 16b0d47a54e1ea34b9416d47c92b43df,
     type: 3}
   m_PrefabInstance: {fileID: 2840964028136473853}
-  m_PrefabAsset: {fileID: 0}
---- !u!2083052967 &1651129546 stripped
-VisualEffect:
-  m_CorrespondingSourceObject: {fileID: 6036484206101981445, guid: d06ede88b6d03fe4abbf2a0c6a833926,
-    type: 3}
-  m_PrefabInstance: {fileID: 3588095383583591815}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1676396303 stripped
 Transform:
@@ -85062,10 +85094,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teletarget: {fileID: 741787473}
+  ghostTarget: {fileID: 0}
   force: 10
-  vfx: {fileID: 1651129546}
+  vfxqueue: []
+  vfxqueue2: []
   spawnOffset: 1
-  rate: 1
+  spawnrate: 1
 --- !u!95 &3588095384933950457
 Animator:
   serializedVersion: 5

@@ -317,7 +317,38 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  punkteScale:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -1.7354071
+      value: 0.59031844
+      inSlope: 0.0012872671
+      outSlope: 0.0012872671
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1281.5637
+      value: 2.2422671
+      inSlope: 0.00019615467
+      outSlope: 0.00019615467
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.48565578
+    - serializedVersion: 3
+      time: 4012.1392
+      value: 3.3629858
+      inSlope: 0.00097271387
+      outSlope: 0.00097271387
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20529486
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   Speed: 4.55
   forceScale: 0.06
-  minScale: 0.5
-  maxScale: 3

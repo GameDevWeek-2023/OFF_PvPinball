@@ -62,7 +62,7 @@ public class GlasDomeSkript : MonoBehaviour
             var forcestreng = Mathf.Clamp01(maxForceDistanz - distanz);
             var spped = dir.normalized * forcestreng * speedMultyplier * 5 * (standertForce + balrig.velocity.magnitude * speedMultyplier);
 
-            ihm.Score(50, this.transform, spped, scoreColor);
+            ihm.Score(20, this.transform, spped, scoreColor);
             splitter[i].isKinematic = false;
             splitter[i].AddForce(spped, ForceMode.Impulse);
             splitterRen[i].enabled = true;
@@ -130,6 +130,7 @@ public class GlasDomeSkript : MonoBehaviour
                 {
                     splitterRen[j].enabled = false;
                 }
+                GetComponent<Collider>().isTrigger = false;
                 HitCount = 3;
                 DomeRenderer.enabled = true;
                 DomeCol.enabled = true;
