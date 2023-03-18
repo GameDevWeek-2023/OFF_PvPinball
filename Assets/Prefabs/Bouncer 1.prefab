@@ -63,7 +63,7 @@ MonoBehaviour:
   sollState: 0
   speedMultiplier: 7
   standertForce: 1200
-  visualEffect: {fileID: 0}
+  visualEffect: {fileID: 1778931426287785835}
 --- !u!2083052967 &1778931426287785835
 VisualEffect:
   m_ObjectHideFlags: 0

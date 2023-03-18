@@ -23,6 +23,7 @@ public class HighscoreController : MonoBehaviour
         {
             Destroy(p);    
         }
+        
         CreatePrefabs();
     }
     

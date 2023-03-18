@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public CustomNetworkManager networkManager;
+    public GameObject panel;
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("MainTheme");
+    }
+    public void HostLobby()
+    {
+        networkManager.StartHost();
+        //panel.SetActive(false);
     }
 
     public void Play()
