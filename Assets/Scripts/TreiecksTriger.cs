@@ -5,9 +5,15 @@ using UnityEngine;
 public class TreiecksTriger : MonoBehaviour
 {
 
+    AudioManager audioManager;
     public Animator goastAnim, normalAnim;
     public float normalForce = 1000f, speedmul = 0.3f;
     public float VelocityStop = 0.3f;
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 7)
@@ -21,6 +27,7 @@ public class TreiecksTriger : MonoBehaviour
             goastAnim.SetTrigger("Bump");
         }
 
+        audioManager.Play("Bumper");
         var rig = other.GetComponent<Rigidbody>();
         rig.velocity *= VelocityStop;
         var dir = (other.transform.position - transform.position).normalized  -transform.right;

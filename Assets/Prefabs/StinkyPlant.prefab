@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   minSpeed: 0.3
+  scoreColor: {r: 0.04590321, g: 1.9462965, b: 0.38845167, a: 1}
   stateAbfall: 0.04
   stateAufbau: 0.09
   maxPartikleSpawn: 20000
