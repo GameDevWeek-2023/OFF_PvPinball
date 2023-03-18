@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: test material
-  m_Shader: {fileID: -6465566751694194690, guid: 44b56e5f2751d6f489099a0347a5fccb,
+  m_Name: M_HitterVideo_1
+  m_Shader: {fileID: -6465566751694194690, guid: 2d63655e93cc07f4988c2e11040d782b,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -22,7 +22,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SampleTexture2D_56452f44883342aa91a55029d42bf17b_Texture_1:
-        m_Texture: {fileID: 2800000, guid: 9d3c4a2ee785d60449d934643918d61d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0453cf71497af644fad1177ccb2e289b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
