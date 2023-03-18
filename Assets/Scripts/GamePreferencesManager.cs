@@ -28,6 +28,9 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public int numberOfGhostBalls = 1;
     
     public int selectedGameMode = 0;
+    public int selectedTime;
+
+    public int[] times = { 1, 2, 3, 5, 10 };
 
     public HighscoreController highscoreController;
 
@@ -107,11 +110,7 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         SaveGameData();
         addCounter++;
     }
-
-    public void SendHighScore()
-    {
-        
-    }
+    
     public void FillHighscores()
     {
         if (highscoreController != null)
@@ -144,6 +143,20 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public void SetNumberOfGhostBalls(int balls)
     {
         numberOfGhostBalls = balls;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetGameMode(int id)
+    {
+        selectedGameMode = id;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetSelectedTime(int id)
+    {
+        selectedTime = id;
         SaveGameData();
         RefreshGamemodeController();
     }
@@ -242,6 +255,7 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         highscoreData.numberOfBalls = numberOfBalls;
         highscoreData.numberOfGhostBalls = numberOfGhostBalls;
         highscoreData.selectedGameMode = selectedGameMode;
+        highscoreData.selectedTime = selectedTime;
     }
 
     public void LoadFromSaveData(HighscoreData highscoreData)
@@ -253,6 +267,7 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         selectedGameMode = highscoreData.selectedGameMode;
         numberOfBalls = highscoreData.numberOfBalls;
         numberOfGhostBalls = highscoreData.numberOfGhostBalls;
+        selectedTime = highscoreData.selectedTime;
         
         CombineData();
     }

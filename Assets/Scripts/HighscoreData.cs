@@ -15,6 +15,8 @@ public class HighscoreData
     
     public int selectedGameMode;
 
+    public int selectedTime;
+
     public string ToJson()
     {
         return JsonUtility.ToJson(this);

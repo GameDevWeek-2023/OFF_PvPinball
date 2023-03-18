@@ -8,15 +8,13 @@ public class DamageNumbers : MonoBehaviour
     // Start is called before the first frame update
     public float LiveTeim, CurendTime;
     public float ofsetY;
-    public AnimationCurve scaleCureveX , scaleCureveY;
+    public AnimationCurve scaleCureveX , scaleCureveY ,punkteScale;
     public float Speed;
     public float forceScale = 0.05f;
     private Vector3 force;
     TextMeshPro text;
     private Camera cam;
     private float punkte;
-
-    public float minScale , maxScale;
 
     private void Awake()
     {
@@ -42,7 +40,7 @@ public class DamageNumbers : MonoBehaviour
     {
         CurendTime += Time.deltaTime;
         float t = punkte / 3000;
-        transform.localScale =  Mathf.Lerp(minScale,maxScale,t)  * new Vector3(scaleCureveX.Evaluate(CurendTime / LiveTeim) , scaleCureveY.Evaluate(CurendTime / LiveTeim), 1);
+        transform.localScale = punkteScale.Evaluate(punkte) * new Vector3(scaleCureveX.Evaluate(CurendTime / LiveTeim) , scaleCureveY.Evaluate(CurendTime / LiveTeim), 1);
         transform.position +=  (force + Vector3.up) * Speed * Time.deltaTime;
         transform.forward = transform.position - cam.transform.position;
 
