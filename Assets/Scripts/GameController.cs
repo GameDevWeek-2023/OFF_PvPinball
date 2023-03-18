@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour
     public int ballCountLeft;
     public int ballCountRight;
 
+    public IngameHighscoreManager ingameHighscoreManager;
+
     private void Start()
     {
         timerText.text = timer.ToString("F2");
@@ -33,6 +35,7 @@ public class GameController : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("BackgroundMusic");
 
         ResetBallCounts();
+        ingameHighscoreManager.ResetPlayerPoints();
         
         healthbar.InitHitPoints(0,totalStartingBalls);
         healthbar.InitHitPoints(1,totalStartingBalls);
@@ -65,6 +68,7 @@ public class GameController : MonoBehaviour
         }
         
         endScreen.SetActive(true);
+        ingameHighscoreManager.SaveHighScore();
     }
     
     public void OnStart()
@@ -94,7 +98,7 @@ public class GameController : MonoBehaviour
         endScreen.SetActive(false);
         timerText.text = "0.00";
         isPlaying = false;
-
+        ingameHighscoreManager.ResetPlayerPoints();
         ResetPipes();
     }
 
@@ -142,6 +146,7 @@ public class GameController : MonoBehaviour
         gameStarted = false;
         isPaused = false;
         PlayAgain();
+        ingameHighscoreManager.ResetPlayerPoints();
     }
 
     public void DestroyBalls()

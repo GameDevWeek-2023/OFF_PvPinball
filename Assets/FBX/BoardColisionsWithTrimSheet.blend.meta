@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: c5e4454c6f8e2a047a9ae3d8fbb73540
+guid: 9236cbb6dc3d6f94f9971db5aa4aba72
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EnvironmentTrim
+    second: {fileID: 2100000, guid: 8f5f7d03c0b396642ac06bfa7a525ff4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EnvironmentTrim.001
+    second: {fileID: 2100000, guid: 8f5f7d03c0b396642ac06bfa7a525ff4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: e7d2c1f7c0b158541821c5e5ad856099, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _EnvironmentTrim_009.001
+    second: {fileID: 2100000, guid: 8f5f7d03c0b396642ac06bfa7a525ff4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

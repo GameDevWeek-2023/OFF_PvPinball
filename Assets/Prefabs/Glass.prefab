@@ -866,7 +866,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3643219119765662414}
   m_Material: {fileID: 13400000, guid: 89a7571b93818004ebee540af69ecd60, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.06
   m_Height: 4.64
@@ -886,6 +886,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DomeRenderer: {fileID: 6823704512002887450}
   DomeCol: {fileID: 4162593587415707765}
+  maxForceDistanz: 1
+  speedMultyplier: 0.5
+  standertForce: 5
+  HitCount: 3
+  scoreColor: {r: 0, g: 0.70987976, b: 13.665186, a: 1}
 --- !u!1 &4347922680467892111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1017,7 @@ GameObject:
   - component: {fileID: 5690728884576089205}
   - component: {fileID: 8743277226465262544}
   - component: {fileID: 6823704512002887450}
-  m_Layer: 14
+  m_Layer: 11
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
