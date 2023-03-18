@@ -16,17 +16,38 @@ public class GlasDomeSkript : MonoBehaviour
     public float HitCount = 3;
     private IngameHighscoreManager ihm;
     AudioManager audioManager;
+    private bool destroit = false , animate = false;
+    public float resetTime = 10 , timeToReset = 0;
+
+    List<Vector3> startPos, bodenPos;
+    List<Quaternion> startQuat,bodenQuat;
+
+    public AnimationCurve anim;
 
     [ColorUsageAttribute(true, true, 1f, 8f, 0.125f, 3f)]
     public Color scoreColor;
 
     private void Awake()
     {
+        startPos = new List<Vector3>();
+        bodenPos = new List<Vector3>();
+
+        startQuat = new List<Quaternion>();
+        bodenQuat = new List<Quaternion>();
+
+
         splitter = GetComponentsInChildren<Rigidbody>();
         splitterRen = GetComponentsInChildren<Renderer>();
             ihm = FindFirstObjectByType<IngameHighscoreManager>();
             audioManager = FindObjectOfType<AudioManager>();
+        foreach(Transform child in transform)
+        {
+            startPos.Add(child.position);
+            startQuat.Add(child.rotation);
+        }
        
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -49,6 +70,8 @@ public class GlasDomeSkript : MonoBehaviour
 
         DomeRenderer.enabled = false;
         DomeCol.enabled = false;
+        destroit = true;
+        timeToReset = 0;
 
 
 
@@ -66,5 +89,25 @@ public class GlasDomeSkript : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(destroit)
+        {
+            timeToReset += Time.deltaTime;
+            if(timeToReset >= resetTime)
+            {
+                int i = 0;
+                foreach (Transform child in transform)
+                {
+                    bodenPos.Add(child.position);
+                    bodenQuat.Add(child.rotation);
+                    splitter[i++].isKinematic = true;
+                }
+                animate = true;
+            }
+        }
+
+
+    }
 
 }

@@ -788,7 +788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateDuration: 0
   rotationAngle: 30
-  force: 110000
+  force: 130000
   flipperLeft: {fileID: 4268684343525017157}
   flipperLeft_L2: {fileID: 4268684342697359148}
   flipperRight: {fileID: 4268684342785730739}
