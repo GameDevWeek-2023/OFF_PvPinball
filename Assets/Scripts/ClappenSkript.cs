@@ -53,10 +53,15 @@ public class ClappenSkript : ScorebelObjeckt
                     }
                 }
             }
-            else
+            else if(rotation <= 1)
             {
                 transform.localRotation = Quaternion.Lerp(sollRot, startRotation, rotation);
                 rotation += rotationSpeed;
+                if(rotation >= 1)
+            {
+                GetComponent<Collider>().enabled = true;
+            }
+
             }
         rotation = Mathf.Clamp01(rotation);
             

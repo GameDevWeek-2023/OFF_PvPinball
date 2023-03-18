@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Nephentes : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class Nephentes : MonoBehaviour
     public Transform pivot;
     public float rotationAngle;
     public float rotateDuration = 1f;
-    
+    public float t , speed , s; 
+
+
     private Quaternion startRotation;
     private Quaternion endRotation;
 
     private bool isAtStart = true;
     private bool isRotating = false;
+    public VisualEffect visualEffect;
+
 
     private void Start()
     {
@@ -26,9 +31,18 @@ public class Nephentes : MonoBehaviour
         }
         //StartCoroutine(RotateNephentes(true));
     }
+    private void Update()
+    {
+        if(t > 0)
+        {
+            t -= Time.deltaTime * speed;
+            visualEffect.SetFloat("SparnRate", t);
+        }
+    }
 
     public void CaughtBall()
     {
+        visualEffect.SetFloat("SparnRate", 0);
         if (!isRotating)
         {
             isRotating = true;
@@ -50,9 +64,14 @@ public class Nephentes : MonoBehaviour
             }
         }
     }
+    public void StartPartikle()
+    {
+        visualEffect.SetFloat("SparnRate", 1);
+        t = 1;
+    }
     
     public void ReleaseBall()
-    {
+    {  
         print("releasing ball");
         trigger.ExitBall();
     }
