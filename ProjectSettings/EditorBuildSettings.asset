@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TobiTheRealestOfAllTestScenes.unity
     guid: 7395eca7bc6203f4ab2a07b43af0094b
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer_01.unity
+    guid: 93308127c38abac4bbc1c8937c462187
   m_configObjects: {}

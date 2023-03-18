@@ -22,7 +22,7 @@ public class CustomNetworkManager : NetworkManager
     [SerializeField]public List<NetworkRoomPlayer> RoomPlayers { get; } = new List<NetworkRoomPlayer>();
     [SerializeField]public List<NetworkGamePlayer> GamePlayers { get; } = new List<NetworkGamePlayer>();
 
-
+    
     public override void OnStartServer()
     {
         spawnPrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs").ToList();
@@ -121,7 +121,7 @@ public class CustomNetworkManager : NetworkManager
         { 
             return;
         }
-        ServerChangeScene("Scene_Map_01");
+        ServerChangeScene("Multiplayer_01");
         
     }
 
