@@ -17,12 +17,16 @@ public class CyberFrog : ScorebelObjeckt
     public Rigidbody rig;
     public float lastAtack;
     public AnimationCurve distanzToSpeedCurve;
-    public Vector3 targetPos;
+    public float centerOffmaceOfset = 1;
+    public float rotationStrengtch = 1;
+
+
     private void Awake()
     {
         base.Awake();
         rig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        rig.centerOfMass = Vector3.zero - Vector3.up * centerOffmaceOfset;
     }
 
     private void Update()
@@ -38,6 +42,15 @@ public class CyberFrog : ScorebelObjeckt
             }
 
         }
+
+        if (CurentTarget != null)
+        {
+            
+           // Debug.Log("angel" + angle);
+            //rig.AddRelativeTorque(transform.up * angle * rotationStrengtch);
+            
+        }
+
 
     }
 
@@ -59,32 +72,43 @@ public class CyberFrog : ScorebelObjeckt
     private void CalculateJump()
     {
         // ungefähr 0.2s bis zur Colision
-        targetPos = CurentTarget.transform.position;
+        Vector3 targetPos = CurentTarget.transform.position;
         targetPos += CurentTarget.GetComponent<Rigidbody>().velocity * atackSpeed;
 
         Vector3 zuÜberBrücken = targetPos - transform.position;
+        
+        if(zuÜberBrücken.magnitude >= AtensionRadius)
+        {
+            zuÜberBrücken = zuÜberBrücken.normalized * AtensionRadius;
+        }
 
-        jumpForce = zuÜberBrücken / atackSpeed;
-        jumpForce += Physics.gravity * atackSpeed;
+        jumpForce = zuÜberBrücken / atackSpeed ;
         jumpForce *= distanzToSpeedCurve.Evaluate((Vector3.Distance(transform.position, CurentTarget.transform.position) / AtensionRadius));
+        jumpForce -= Physics.gravity / atackSpeed / 100;
 
         Debug.DrawRay(targetPos, transform.up, Color.red, 1f);
+    }
+    private void JumpForce()
+    {
+        rig.MoveRotation(Quaternion.LookRotation(CurentTarget.transform.position - transform.position, transform.up));
+        rig.velocity = jumpForce;
+            CurentTarget = null;
     }
     private void AtackBall()
     {
         // Animationen Und Delay myb
-        if (Vector3.Distance(transform.position, targetPos) <= AtensionRadius)
-        {
 
-            lastAtack = Time.time;
-            rig.velocity = jumpForce;
+        if(Vector3.Distance(transform.position , CurentTarget.transform.position) >= AtensionRadius)
+        {
             CurentTarget = null;
         }
         else
         {
-            CurentTarget = null;
-        }    
-                
+
+        lastAtack = Time.time;
+        anim.SetTrigger("Jump");
+        CurentTarget = null;
+        }
     }
 
 }
