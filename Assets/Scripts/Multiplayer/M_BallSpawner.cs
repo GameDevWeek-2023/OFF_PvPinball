@@ -60,7 +60,7 @@ public class M_BallSpawner : NetworkBehaviour
                 {
                     if (canShoot)
                     {
-                        GameObject b = Instantiate(ball, exitPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        GameObject b = Instantiate(ball, exitPoint.transform.position, Quaternion.identity, null);
                         b.gameObject.GetComponent<Rigidbody>().AddForce(exitPoint.forward * spawnForce, ForceMode.Impulse);
                         NetworkServer.Spawn(b);
                         ballQueue.RemoveAt(0);
@@ -71,7 +71,7 @@ public class M_BallSpawner : NetworkBehaviour
                 {
                     if (canShoot)
                     {
-                        GameObject b = Instantiate(ballLayerTwo, exitPoint.transform.position, Quaternion.identity, UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects()[0].transform);
+                        GameObject b = Instantiate(ballLayerTwo, exitPoint.transform.position, Quaternion.identity, null);
                         b.gameObject.GetComponent<Rigidbody>().AddForce(exitPoint.forward * spawnForce, ForceMode.Impulse);
                         NetworkServer.Spawn(b);
                         ballQueue.RemoveAt(0);

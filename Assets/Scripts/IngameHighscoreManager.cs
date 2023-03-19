@@ -8,16 +8,25 @@ public class IngameHighscoreManager : MonoBehaviour
     public GamePreferencesManager gamePreferencesManager;
     public int leftPlayerScore = 0;
     public int rightPlayerScore = 0;
+    public int combinedScore = 0;
     public GameObject[] scoreBoards;
     public GameObject scoreBoard;
     private int lastScoreBoard = 0;
 
     public TextMeshProUGUI scoreLeft;
     public TextMeshProUGUI scoreRight;
+
+    public TextMeshProUGUI scoreCombined;
+    public GameObject scoreCombinedGO;
+    public GameObject scoreLeftGO;
+    public GameObject scoreRightGO;
+
+    public bool isCoop = false;
     public void ResetPlayerPoints()
     {
         leftPlayerScore = 0;
         rightPlayerScore = 0;
+        combinedScore = 0;
         UpdateUI();
     }
 
@@ -43,6 +52,12 @@ public class IngameHighscoreManager : MonoBehaviour
 
     public void AddPoints(bool isLeftPlayer, int points)
     {
+        if (isCoop)
+        {
+            combinedScore += points;
+            return;
+        }
+        
         if (isLeftPlayer)
         {
             leftPlayerScore += points;
@@ -74,5 +89,23 @@ public class IngameHighscoreManager : MonoBehaviour
     {
         scoreLeft.text = leftPlayerScore.ToString();
         scoreRight.text = rightPlayerScore.ToString();
+
+        scoreCombined.text = combinedScore.ToString();
+    }
+
+    public void ToggleCounter(bool val)
+    {
+        if (val)
+        {
+            scoreCombinedGO.SetActive(false);
+            scoreLeftGO.SetActive(true);
+            scoreRightGO.SetActive(true);
+        }
+        else
+        {
+            scoreCombinedGO.SetActive(true);
+            scoreLeftGO.SetActive(false);
+            scoreRightGO.SetActive(false);
+        }
     }
 }

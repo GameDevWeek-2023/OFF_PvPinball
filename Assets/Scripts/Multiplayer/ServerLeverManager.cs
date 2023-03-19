@@ -7,45 +7,62 @@ public class ServerLeverManager : NetworkBehaviour
 {
     public float force = 10;
 
-    public Transform flipperLeft, flipperLeft_L2;
-    public Transform flipperRight, flipperRight_L2;
+    private Transform flipperLeft, flipperLeft_L2;
+    private Transform flipperRight, flipperRight_L2;
 
-    public Rigidbody rigLeft, rigLeft_L2;
-    public Rigidbody rigRight, rigRight_L2;  
+    private Rigidbody rigLeft, rigLeft_L2;
+    private Rigidbody rigRight, rigRight_L2;  
     
     public float flipperRotationAngle;
 
     public GameObject l1, l2, r1, r2;
+    
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        NetworkServer.Spawn(l1);
-        NetworkServer.Spawn(l2);
-        NetworkServer.Spawn(r1);
-        NetworkServer.Spawn(r2);
-    }
-
-    private void Start()
-    {
+        
         rigRight.centerOfMass = Vector3.zero;
         rigLeft.centerOfMass = Vector3.zero;
 
         rigRight_L2.centerOfMass = Vector3.zero;
         rigLeft_L2.centerOfMass = Vector3.zero;
 
-        if (isClient)
-        {
-            Destroy(rigLeft);
-            Destroy(rigLeft_L2);
-            Destroy(rigRight);
-            Destroy(rigRight_L2);
-        }
+        rigLeft = l1.GetComponent<Rigidbody>();
+        rigLeft_L2 = l2.GetComponent<Rigidbody>();
+        rigRight = r1.GetComponent<Rigidbody>();
+        rigRight_L2 = r2.GetComponent<Rigidbody>();
+
+        flipperLeft = l1.transform;
+        flipperLeft_L2 = l2.transform;
+        flipperRight = r1.transform;
+        flipperRight_L2 = r2.transform;
+
+        //NetworkServer.Spawn(l1);
+        //NetworkServer.Spawn(l2);
+        //NetworkServer.Spawn(r1);
+        //NetworkServer.Spawn(r2);
     }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        
+        rigLeft = l1.GetComponent<Rigidbody>();
+        rigLeft_L2 = l2.GetComponent<Rigidbody>();
+        rigRight = r1.GetComponent<Rigidbody>();
+        rigRight_L2 = r2.GetComponent<Rigidbody>();
+        
+        Destroy(rigLeft);
+        Destroy(rigLeft_L2);
+        Destroy(rigRight);
+        Destroy(rigRight_L2);
+    }
+    
     
     private void FixedUpdate()
     {
-        if (isServer)
+        /*if (isServer)
         {
             if (Quaternion.Angle(Quaternion.identity, flipperRight.transform.localRotation) >= flipperRotationAngle)
             {
@@ -68,7 +85,7 @@ public class ServerLeverManager : NetworkBehaviour
                 rigLeft_L2.angularVelocity = Vector3.zero;
                 rigLeft_L2.transform.localRotation = Quaternion.RotateTowards(Quaternion.identity, rigLeft_L2.transform.localRotation, flipperRotationAngle);
             }
-        }
+        }*/
     }
 
     [Server]

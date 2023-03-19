@@ -121,7 +121,7 @@ public class CustomNetworkManager : NetworkManager
         { 
             return;
         }
-        ServerChangeScene("Multiplayer_01");
+        ServerChangeScene("Multiplayer_02");
     }
 
     public override void ServerChangeScene(string newSceneName)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour
     public Pipe startPipeLeft, startPipeRight;
     private float timer = 0;
     public TextMeshProUGUI timerText, endGameTimerText, winnerText;
+    public GameObject timerGO;
     public GameObject endScreen;
     public GameObject pauseScreen;
 
@@ -30,6 +32,11 @@ public class GameController : MonoBehaviour
 
     public IngameHighscoreManager ingameHighscoreManager;
 
+    private bool isTimed = false;
+    
+    public int currentGameMode = 0;
+    
+
     private void Start()
     {
         timerText.text = timer.ToString("F2");
@@ -40,6 +47,42 @@ public class GameController : MonoBehaviour
         if (ingameHighscoreManager != null)
         {
             ingameHighscoreManager.ResetPlayerPoints();
+        }
+        
+        ChangeGameMode();
+    }
+
+    public void ChangeGameMode()
+    {
+        currentGameMode = gamePreferencesManager.selectedGameMode;
+        
+        switch (currentGameMode)
+        {
+            case(0):
+                isTimed = false;
+                ingameHighscoreManager.isCoop = false;
+                ingameHighscoreManager.ToggleCounter(true);
+                timerGO.SetActive(false);
+                break;
+            case(1):
+                isTimed = true;
+                timer = gamePreferencesManager.times[gamePreferencesManager.selectedTime];
+                ingameHighscoreManager.isCoop = false;
+                ingameHighscoreManager.ToggleCounter(false);
+                timerGO.SetActive(true);
+                break;
+            case(2):
+                isTimed = false;
+                ingameHighscoreManager.isCoop = true;
+                ingameHighscoreManager.ToggleCounter(true);
+                timerGO.SetActive(false);
+                break;
+            case(3):
+                isTimed = false;
+                ingameHighscoreManager.isCoop = false;
+                ingameHighscoreManager.ToggleCounter(true);
+                timerGO.SetActive(false);
+                break;
         }
     }
 
@@ -62,12 +105,17 @@ public class GameController : MonoBehaviour
     
     private void Update()
     {
-        if (gameStarted)
+        if (gameStarted && isTimed)
         {
-            timer += Time.deltaTime;
+            timer -= Time.deltaTime;
             if (timerText != null)
             {
                 timerText.text = timer.ToString("F2");
+            }
+
+            if (timer <= 0)
+            {
+                EndGame(ingameHighscoreManager.leftPlayerScore > ingameHighscoreManager.rightPlayerScore);
             }
         }
     }
@@ -90,7 +138,7 @@ public class GameController : MonoBehaviour
         }
         
         endScreen.SetActive(true);
-        if (ingameHighscoreManager != null)
+        if (ingameHighscoreManager != null && currentGameMode == 0)
         {
             ingameHighscoreManager.SaveHighScore();
         }
@@ -128,6 +176,7 @@ public class GameController : MonoBehaviour
             ingameHighscoreManager.ResetPlayerPoints();
         }
         ResetPipes();
+        ChangeGameMode();
     }
 
     void OnPause()
@@ -174,6 +223,7 @@ public class GameController : MonoBehaviour
         gameStarted = false;
         isPaused = false;
         PlayAgain();
+        ChangeGameMode();
         
         if (ingameHighscoreManager != null)
         {
