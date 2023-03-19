@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17410383, g: 0.21771567, b: 0.29990825, a: 1}
+  m_IndirectSpecularColor: {r: 0.17410362, g: 0.2177152, b: 0.2999076, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -79717,10 +79717,12 @@ MonoBehaviour:
   winnerText: {fileID: 1891347603}
   endScreen: {fileID: 570152599}
   pauseScreen: {fileID: 1155899033}
+  gamePreferencesManager: {fileID: 2030403189}
   healthbar: {fileID: 690319025}
-  totalStartingBalls: 4
-  ballCountLeft: 0
-  ballCountRight: 0
+  startLeft: 0
+  startRight: 0
+  hitPointsLeft: 0
+  hitPointsRight: 0
   ingameHighscoreManager: {fileID: 2030403190}
 --- !u!4 &2030403187
 Transform:
@@ -79837,11 +79839,14 @@ MonoBehaviour:
   numberOfBalls: 2
   numberOfGhostBalls: 1
   selectedGameMode: 0
-  selectedTime: 0
+  selectedTime: 2
+  hpLeft: 5
+  hpRight: 5
   times: 010000000200000003000000050000000a000000
   highscoreController: {fileID: 0}
   singlelayerManager: {fileID: 0}
   multiplayerManager: {fileID: 0}
+  gameController: {fileID: 2030403186}
   ballSpawner: {fileID: 985675180}
 --- !u!114 &2030403190
 MonoBehaviour:

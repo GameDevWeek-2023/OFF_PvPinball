@@ -28,7 +28,10 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public int numberOfGhostBalls = 1;
     
     public int selectedGameMode = 0;
-    public int selectedTime;
+    public int selectedTime = 2;
+
+    public int hpLeft = 5;
+    public int hpRight = 5;
 
     public int[] times = { 1, 2, 3, 5, 10 };
 
@@ -36,6 +39,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
 
     public GamemodeManager singlelayerManager;
     public GamemodeManager multiplayerManager;
+
+    public GameController gameController;
 
     public Pipe ballSpawner;
     
@@ -58,6 +63,11 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         {
             ballSpawner.startBalls = numberOfBalls;
             ballSpawner.startGhostBalls = numberOfGhostBalls;
+        }
+
+        if (gameController != null)
+        {
+            gameController.InitHP(hpLeft, hpRight);
         }
     }
 
@@ -160,6 +170,20 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         SaveGameData();
         RefreshGamemodeController();
     }
+
+    public void SetHPLeft(int id)
+    {
+        hpLeft = id;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
+
+    public void SetHPRight(int id)
+    {
+        hpRight = id;
+        SaveGameData();
+        RefreshGamemodeController();
+    }
     
     public void ResetHighscores()
     {
@@ -256,6 +280,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         highscoreData.numberOfGhostBalls = numberOfGhostBalls;
         highscoreData.selectedGameMode = selectedGameMode;
         highscoreData.selectedTime = selectedTime;
+        highscoreData.hpLeft = hpLeft;
+        highscoreData.hpRight = hpRight;
     }
 
     public void LoadFromSaveData(HighscoreData highscoreData)
@@ -268,6 +294,17 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         numberOfBalls = highscoreData.numberOfBalls;
         numberOfGhostBalls = highscoreData.numberOfGhostBalls;
         selectedTime = highscoreData.selectedTime;
+        hpLeft = highscoreData.hpLeft;
+        hpRight = highscoreData.hpRight;
+
+        if (hpLeft == 0)
+        {
+            hpLeft = 5;
+        }
+        if(hpRight == 0)
+        {
+            hpRight = 5;
+        }
         
         CombineData();
     }

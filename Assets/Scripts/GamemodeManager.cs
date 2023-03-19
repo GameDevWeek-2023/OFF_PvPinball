@@ -13,6 +13,8 @@ public class GamemodeManager : MonoBehaviour
     [SerializeField] private TMP_InputField nameInputFieldRight = null;
     [SerializeField] private TMP_InputField numberOfBallsInput = null;
     [SerializeField] private TMP_InputField numberOfGhostBallsInput = null;
+    [SerializeField] private TMP_InputField hpLeftInput = null;
+    [SerializeField] private TMP_InputField hpRightInput = null;
 
     [SerializeField] private TMP_Dropdown dropDown;
     [SerializeField] private TMP_Dropdown timeSelectDropDown;
@@ -41,6 +43,18 @@ public class GamemodeManager : MonoBehaviour
         
         numberOfBallsInput.text = gamePreferencesManager.numberOfBalls.ToString();
         numberOfGhostBallsInput.text = gamePreferencesManager.numberOfGhostBalls.ToString();
+
+        hpLeftInput.text = gamePreferencesManager.hpLeft.ToString();
+
+        if (hpRightInput != null)
+        {
+            hpRightInput.text = gamePreferencesManager.hpRight.ToString();
+        }
+        else
+        {
+            
+        }
+        
 
         if (isSinglePlayer && gamePreferencesManager.selectedGameMode == 3)
         {
@@ -81,6 +95,20 @@ public class GamemodeManager : MonoBehaviour
     public void SaveNumberOfGhostBalls()
     {
         gamePreferencesManager.SetNumberOfGhostBalls(int.Parse(numberOfGhostBallsInput.text));
+    }
+    
+    public void SaveHPLeft()
+    {
+        gamePreferencesManager.SetHPLeft(int.Parse(hpLeftInput.text));
+    }
+
+    public void SaveHPRight()
+    {
+        if (hpRightInput != null)
+        {
+            gamePreferencesManager.SetHPRight(int.Parse(hpRightInput.text));
+        }
+        
     }
 
     public void SaveGameMode()

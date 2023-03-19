@@ -19,9 +19,10 @@ public class Healthbar : MonoBehaviour
 
     public GameObject Heart;
     
-    public void InitHitPoints(int player, int hp)
+    public void InitHitPoints(bool isLeftPlayer, int hp)
     {
-        if (player == 0)
+        print("initialising hitpoints " + hp);
+        if (isLeftPlayer)
         {
             hitPointsPlayerLeft = hp;
             hpLeft.text = hitPointsPlayerLeft.ToString();
