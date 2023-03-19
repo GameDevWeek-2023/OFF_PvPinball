@@ -7,8 +7,8 @@ PhysicMaterial:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Frog
-  dynamicFriction: 0.49
-  staticFriction: 0.48
-  bounciness: 0.24
-  frictionCombine: 3
+  dynamicFriction: 0.22
+  staticFriction: 0.21
+  bounciness: 0.03
+  frictionCombine: 0
   bounceCombine: 0
