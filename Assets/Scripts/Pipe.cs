@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -33,8 +34,7 @@ public class Pipe : MonoBehaviour
 
     public bool isLeftPlayer = true;
 
-    public MusikLayers music;
-    
+    public Teleport telescript;
     public void LoadBalls()
     {
         balls = new List<GameObject>();
@@ -116,7 +116,7 @@ public class Pipe : MonoBehaviour
                         b.GetComponent<Ball>().isLayerTwo = false;
                         
                         AddBall(b);
-                        music.RefreshList(b.GetComponent<Rigidbody>());
+                        
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                     
@@ -157,6 +157,7 @@ public class Pipe : MonoBehaviour
 
     public void AddBall(GameObject ball)
     {
+        print(ball.GetComponent<Rigidbody>());
         balls.Add(ball);
     }
 
@@ -176,7 +177,7 @@ public class Pipe : MonoBehaviour
             }
             else
             {
-                ballQueue.Add(1);
+                
             }
         }
     }
