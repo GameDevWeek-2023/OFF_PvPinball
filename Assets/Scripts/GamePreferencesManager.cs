@@ -42,7 +42,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
 
     public GameController gameController;
 
-    public Pipe ballSpawner;
+    public Pipe ballSpawnerLeft;
+    public Pipe ballSpawnerRight;
     
     const string glyphs= "abcdefg$$anonymous$$jklmnopqrstuvwxyz0123456789";
 
@@ -59,15 +60,26 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
         }
         RefreshGamemodeController();
 
-        if (ballSpawner != null)
+        if (ballSpawnerLeft != null)
         {
-            ballSpawner.startBalls = numberOfBalls;
-            ballSpawner.startGhostBalls = numberOfGhostBalls;
+            ballSpawnerLeft.startBalls = numberOfBalls;
+            ballSpawnerLeft.startGhostBalls = numberOfGhostBalls;
+        }
+
+        if (ballSpawnerRight != null)
+        {
+            ballSpawnerRight.startBalls = numberOfBalls;
+            ballSpawnerRight.startGhostBalls = numberOfGhostBalls;
         }
 
         if (gameController != null)
         {
             gameController.InitHP(hpLeft, hpRight);
+        }
+
+        if (gameController != null)
+        {
+            gameController.Init();
         }
     }
 

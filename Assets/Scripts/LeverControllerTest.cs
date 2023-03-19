@@ -78,6 +78,7 @@ public class LeverControllerTest : MonoBehaviour
         {
             rigLeft.angularVelocity = Vector3.zero;
             rigLeft.AddTorque(rigLeft.transform.up * force * 1);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     
@@ -94,6 +95,7 @@ public class LeverControllerTest : MonoBehaviour
         {
             rigLeft_L2.angularVelocity = Vector3.zero;
             rigLeft_L2.AddTorque(rigLeft_L2.transform.up * force * 1);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
     }
     
@@ -111,6 +113,7 @@ public class LeverControllerTest : MonoBehaviour
         {
             rigRight.angularVelocity = Vector3.zero;
             rigRight.AddTorque(rigRight.transform.up * -force);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
             
         }
     }
@@ -128,6 +131,7 @@ public class LeverControllerTest : MonoBehaviour
         {
             rigRight_L2.angularVelocity = Vector3.zero;
             rigRight_L2.AddTorque(rigRight_L2.transform.up * -force);
+            FindObjectOfType<AudioManager>().Play("FlipperDown");
         }
         
     } 

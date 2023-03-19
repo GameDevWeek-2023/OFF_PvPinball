@@ -39,6 +39,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void Init()
+    {
         timerText.text = timer.ToString("F2");
         endScreen.SetActive(false);
         pauseScreen.SetActive(false);
@@ -66,9 +71,9 @@ public class GameController : MonoBehaviour
                 break;
             case(1):
                 isTimed = true;
-                timer = gamePreferencesManager.times[gamePreferencesManager.selectedTime];
+                timer = gamePreferencesManager.times[gamePreferencesManager.selectedTime] * 60;
                 ingameHighscoreManager.isCoop = false;
-                ingameHighscoreManager.ToggleCounter(false);
+                ingameHighscoreManager.ToggleCounter(true);
                 timerGO.SetActive(true);
                 break;
             case(2):
@@ -80,7 +85,7 @@ public class GameController : MonoBehaviour
             case(3):
                 isTimed = false;
                 ingameHighscoreManager.isCoop = false;
-                ingameHighscoreManager.ToggleCounter(true);
+                ingameHighscoreManager.ToggleCounter(false);
                 timerGO.SetActive(false);
                 break;
         }
@@ -291,10 +296,5 @@ public class GameController : MonoBehaviour
     {
         hitPointsRight--;
         healthbar.RemoveHeart(1, hitPointsRight);
-    }
-    
-    void OnSave()
-    {
-        ingameHighscoreManager.SaveHighScore();
     }
 }

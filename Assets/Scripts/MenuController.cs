@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
 {
     public CustomNetworkManager networkManager;
     public GameObject panel;
+    public GamePreferencesManager gamePreferencesManager;
     private void Start()
     {
     }
@@ -17,9 +18,28 @@ public class MenuController : MonoBehaviour
         //panel.SetActive(false);
     }
 
-    public void Play()
+    public void PlayDuo()
     {
-        SceneManager.LoadScene(1);
+        if (gamePreferencesManager.selectedGameMode == 2)
+        {
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            SceneManager.LoadScene(1);
+        }
+    }
+
+    public void PlaySolo()
+    {
+        if (gamePreferencesManager.selectedGameMode == 2)
+        {
+            SceneManager.LoadScene(4);
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     public void Quit()
