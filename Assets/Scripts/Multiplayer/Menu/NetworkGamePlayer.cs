@@ -37,7 +37,7 @@ public class NetworkGamePlayer : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        serverLeverManager = FindObjectOfType<ServerLeverManager>();
+        //serverLeverManager = FindObjectOfType<ServerLeverManager>();
     }
 
     
@@ -57,7 +57,7 @@ public class NetworkGamePlayer : NetworkBehaviour
     {
         this.displayName = displayName;
     }
-    
+    /*
    void OnLeftTrigger(InputValue value)
     {
         float val = value.Get<float>();
@@ -146,5 +146,5 @@ public class NetworkGamePlayer : NetworkBehaviour
         serverLeverManager.RightTriggerL2(val);
     }
     
-    
+    */
 }
