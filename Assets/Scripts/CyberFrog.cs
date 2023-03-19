@@ -17,7 +17,7 @@ public class CyberFrog : ScorebelObjeckt
     public Rigidbody rig;
     public float lastAtack;
     public AnimationCurve distanzToSpeedCurve;
-
+    public Vector3 targetPos;
     private void Awake()
     {
         base.Awake();
@@ -59,7 +59,7 @@ public class CyberFrog : ScorebelObjeckt
     private void CalculateJump()
     {
         // ungefähr 0.2s bis zur Colision
-        Vector3 targetPos = CurentTarget.transform.position;
+        targetPos = CurentTarget.transform.position;
         targetPos += CurentTarget.GetComponent<Rigidbody>().velocity * atackSpeed;
 
         Vector3 zuÜberBrücken = targetPos - transform.position;
@@ -73,7 +73,7 @@ public class CyberFrog : ScorebelObjeckt
     private void AtackBall()
     {
         // Animationen Und Delay myb
-        if (Vector3.Distance(transform.position, CurentTarget.transform.position) <= AtensionRadius)
+        if (Vector3.Distance(transform.position, targetPos) <= AtensionRadius)
         {
 
             lastAtack = Time.time;

@@ -14,7 +14,18 @@ public class ServerLeverManager : NetworkBehaviour
     public Rigidbody rigRight, rigRight_L2;  
     
     public float flipperRotationAngle;
-    
+
+    public GameObject l1, l2, r1, r2;
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        NetworkServer.Spawn(l1);
+        NetworkServer.Spawn(l2);
+        NetworkServer.Spawn(r1);
+        NetworkServer.Spawn(r2);
+    }
+
     private void Start()
     {
         rigRight.centerOfMass = Vector3.zero;
