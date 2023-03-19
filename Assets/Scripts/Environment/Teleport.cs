@@ -8,14 +8,15 @@ using UnityEngine.VFX;
 
 public class Teleport : MonoBehaviour
 {
-    [SerializeField] private Transform teletarget;
-    [SerializeField] private Transform ghostTarget;
-    [SerializeField] private float force;
+    [SerializeField] public Transform teletarget;
+    [SerializeField] public Transform ghostTarget;
+    [SerializeField] public float force;
     
     [SerializeField] private  VisualEffect[] vfxqueue;
     [SerializeField] private VisualEffect[] vfxqueue2;
-    [SerializeField] private float spawnOffset = 1f;
+    [SerializeField] public float spawnOffset = 1f;
     [SerializeField] private float spawnrate = 1f;
+    [SerializeField] public GameObject ghostball;
     private float startrate;
 
     private Vector3 forward;
@@ -31,7 +32,31 @@ public class Teleport : MonoBehaviour
     void Update()
     {
     }
-    
+
+    // Plays the Ghost Ball VFX
+    public void playvfx()
+    {
+        if (index < len - 1)
+        {
+            vfxqueue[index].Reinit();
+            index++;
+        }
+        else
+        {
+            index = 0;
+            vfxqueue[index].Reinit();
+        }
+    }
+
+    public void spawnghost()
+    {
+        GameObject b = Instantiate(ghostball, ghostTarget.position + ghostTarget.forward * spawnOffset ,Quaternion.identity,null);
+        Rigidbody rig = b.GetComponent<Rigidbody>();
+        rig.AddForce(ghostTarget.forward * (force),ForceMode.Impulse);
+        FindObjectOfType<AudioManager>().Play("BallStart");
+        playvfx();
+        
+    }
         private void OnTriggerEnter(Collider other)
         {
             if (other.GameObject().layer != LayerMask.NameToLayer("BallLayer2"))

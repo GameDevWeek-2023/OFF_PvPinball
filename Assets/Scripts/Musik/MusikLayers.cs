@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class MusikLayers : MonoBehaviour
 {
-    public GameController gameController;
-    [SerializeField] public GameObject[] ballListe;
-    [ItemCanBeNull] private List<Rigidbody> rigs;
-    public List<GameObject> ballslist;
+    [ItemCanBeNull] public List<Rigidbody> rigs;
         
     // Start is called before the first frame update
     private float combinedVel = 0;
@@ -19,15 +16,12 @@ public class MusikLayers : MonoBehaviour
         StartCoroutine(CalcVel());
     }
 
-    public void RefreshList(Rigidbody newrig)
+    public void AddToList(Rigidbody newrig)
     {
-        ballslist = gameController.startPipeLeft.balls;
-
-        foreach (GameObject ball in ballslist)
-        {
-            rigs.Add(newrig);
-        }
+        rigs.Add(newrig);
     }
+
+    
     // Update is called once per frame
     void Update()
     {
@@ -55,6 +49,11 @@ public class MusikLayers : MonoBehaviour
     IEnumerator CalcVel()
     {
         combinedVel = calculateCombinedForce(rigs);
-        yield return null;
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    public void RemoveFromList(Rigidbody rig)
+    {
+        rigs.Remove(rig);   
     }
 }
