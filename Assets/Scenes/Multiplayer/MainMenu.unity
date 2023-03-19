@@ -35086,6 +35086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8673019852908395152, guid: 07b2822c8f73c53409c23d807c3543a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8673019852908395154, guid: 07b2822c8f73c53409c23d807c3543a9,
         type: 3}
       propertyPath: m_RootOrder

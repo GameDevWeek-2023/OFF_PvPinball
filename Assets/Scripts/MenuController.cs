@@ -11,7 +11,9 @@ public class MenuController : MonoBehaviour
     public GamePreferencesManager gamePreferencesManager;
     private void Start()
     {
+        FindObjectOfType<AudioManager>().Play("MainTheme");
     }
+    
     public void HostLobby()
     {
         networkManager.StartHost();
