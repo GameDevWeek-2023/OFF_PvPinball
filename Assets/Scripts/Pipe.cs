@@ -32,6 +32,8 @@ public class Pipe : MonoBehaviour
     public bool canShoot;
 
     public bool isLeftPlayer = true;
+
+    public MusikLayers music;
     
     public void LoadBalls()
     {
@@ -114,6 +116,7 @@ public class Pipe : MonoBehaviour
                         b.GetComponent<Ball>().isLayerTwo = false;
                         
                         AddBall(b);
+                        music.RefreshList(b.GetComponent<Rigidbody>());
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                     
@@ -132,6 +135,7 @@ public class Pipe : MonoBehaviour
                         b.GetComponent<Ball>().isLayerTwo = true;
                         
                         AddGhostBall(b);
+                        
                         //FindObjectOfType<AudioManager>().Play("Launch");
                     }
                 }
