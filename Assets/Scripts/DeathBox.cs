@@ -9,23 +9,21 @@ public class DeathBox : MonoBehaviour
     public PlayerController player;
     public Pipe pipe;
     public GameController gameController;
-
+    public Teleport teleporter;
+    
     public bool isLeft = true;
     private void OnTriggerEnter(Collider other)
     {
+        print("Deathbox OneTriggerEnter");
         if (other.gameObject.GetComponent<Ball>() != null)
         {
             if (!other.GetComponent<Ball>().isLayerTwo)
             {
-                if (pipe != null)
-                {
-                    pipe.SpawnBall(1);
-                }
-                pipe.RemoveBall(other.gameObject);
+                print("Debug : Should Spawn Ghosts Balls");
+                teleporter.spawnghost();
             }
             else
             {
-                player.OnDamage();
                 if (this.isLeft)
                 {
                     gameController.OnHitLeft();
@@ -69,7 +67,7 @@ public class DeathBox : MonoBehaviour
 
         if (gameController.hitPointsLeft <= 0)
         {
-            gameController.EndGame(true);
+            //gameController.EndGame(true);
         }
 
         if (gameController.hitPointsRight <= 0)
