@@ -24,6 +24,8 @@ public class CyberFrog : ScorebelObjeckt
     private float t = 0;
     public float animSpeed = 1;
     public AnimationCurve animationHeight;
+    public float timeToAktivate = 50f;
+
 
     public Transform AnimEndPunkt;
 
@@ -60,6 +62,11 @@ public class CyberFrog : ScorebelObjeckt
 
         }
 
+        if (timeToAktivate < Time.time)
+        {
+            anim.SetTrigger("Anable");
+        }
+        
         if (CurentTarget != null)
         {
             
@@ -134,18 +141,18 @@ public class CyberFrog : ScorebelObjeckt
 
     private void CalculateJump()
     {
-        // ungefähr 0.2s bis zur Colision
+        // ungefï¿½hr 0.2s bis zur Colision
         Vector3 targetPos = CurentTarget.transform.position;
         targetPos += CurentTarget.GetComponent<Rigidbody>().velocity * atackSpeed;
 
-        Vector3 zuÜberBrücken = targetPos - transform.position;
+        Vector3 tag = targetPos - transform.position;
         
-        if(zuÜberBrücken.magnitude >= AtensionRadius)
+        if(tag.magnitude >= AtensionRadius)
         {
-            zuÜberBrücken = zuÜberBrücken.normalized * AtensionRadius;
+            tag = tag.normalized * AtensionRadius;
         }
 
-        jumpForce = zuÜberBrücken / atackSpeed ;
+        jumpForce = tag / atackSpeed ;
         jumpForce *= distanzToSpeedCurve.Evaluate((Vector3.Distance(transform.position, CurentTarget.transform.position) / AtensionRadius));
         jumpForce -= Physics.gravity / atackSpeed / 100;
 
@@ -167,7 +174,7 @@ public class CyberFrog : ScorebelObjeckt
         }
         else
         {
-
+        GetComponent<AudioSource>().Play();
         lastAtack = Time.time;
         anim.SetTrigger("Jump");
         CurentTarget = null;

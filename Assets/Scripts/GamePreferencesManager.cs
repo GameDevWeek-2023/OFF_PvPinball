@@ -30,8 +30,8 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     public int selectedGameMode = 0;
     public int selectedTime = 2;
 
-    public int hpLeft = 5;
-    public int hpRight = 5;
+    public int hpLeft = 4;
+    public int hpRight = 4;
 
     public int[] times = { 1, 2, 3, 5, 10 };
 
@@ -52,6 +52,15 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
     
     void Start()
     {
+        if (hpLeft == 0)
+        {
+            hpLeft = 4;
+        }
+        if(hpRight == 0)
+        {
+            hpRight = 4;
+        }
+        
         CombineData();
         LoadGameData();
         if (highscoreController != null)
@@ -311,11 +320,11 @@ public class GamePreferencesManager : MonoBehaviour, ISaveable
 
         if (hpLeft == 0)
         {
-            hpLeft = 5;
+            hpLeft = 4;
         }
         if(hpRight == 0)
         {
-            hpRight = 5;
+            hpRight = 4;
         }
         
         CombineData();
