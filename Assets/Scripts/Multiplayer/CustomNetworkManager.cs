@@ -122,7 +122,6 @@ public class CustomNetworkManager : NetworkManager
             return;
         }
         ServerChangeScene("Multiplayer_01");
-        
     }
 
     public override void ServerChangeScene(string newSceneName)
@@ -140,4 +139,5 @@ public class CustomNetworkManager : NetworkManager
         }
         base.ServerChangeScene(newSceneName);
     }
+    
 }
