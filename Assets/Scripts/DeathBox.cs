@@ -67,12 +67,12 @@ public class DeathBox : MonoBehaviour
 
         if (gameController.hitPointsLeft <= 0)
         {
-            //gameController.EndGame(true);
+            gameController.EndGame(true);
         }
 
         if (gameController.hitPointsRight <= 0)
         {
-            //gameController.EndGame(true);
+            gameController.EndGame(true);
         }
     }
 }

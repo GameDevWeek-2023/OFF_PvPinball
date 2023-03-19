@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -105,10 +104,11 @@ public class Pipe : MonoBehaviour
                 {
                     if (canShoot)
                     {
+                        print("Spawing ball");
                         GameObject b = Instantiate(ball,exitPoint.transform.position,Quaternion.identity,null);
                         
                         Rigidbody rig = b.GetComponent<Rigidbody>();
-                        rig.AddForce(spawnPoint.forward * force);
+                        rig.AddForce(exitPoint.forward * force, ForceMode.Impulse);
                         ballQueue.RemoveAt(0);
                         FindObjectOfType<AudioManager>().Play("BallStart");
                         
@@ -127,7 +127,7 @@ public class Pipe : MonoBehaviour
                     {
                         GameObject b = Instantiate(ballLayerTwo, exitPoint.transform.position, Quaternion.identity, null);
                         Rigidbody rig = b.GetComponent<Rigidbody>();
-                        rig.AddForce(spawnPoint.forward * force);
+                        rig.AddForce(exitPoint.forward * force, ForceMode.Impulse);
                         ballQueue.RemoveAt(0);
                         FindObjectOfType<AudioManager>().Play("BallStart");
                         
