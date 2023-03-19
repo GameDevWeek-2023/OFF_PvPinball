@@ -19,7 +19,16 @@ public class CyberFrog : ScorebelObjeckt
     public AnimationCurve distanzToSpeedCurve;
     public float centerOffmaceOfset = 1;
     public float rotationStrengtch = 1;
+    public float IdelTrigerTime = 20, idelTrigerTimer;
+    public bool animatOnCurv = false;
+    private float t = 0;
+    public float animSpeed = 1;
+    public AnimationCurve animationHeight;
 
+    public Transform AnimEndPunkt;
+
+    public Vector3 sollPos , istPos;
+    public Quaternion sollQuat, isQuat;
 
     private void Awake()
     {
@@ -27,10 +36,18 @@ public class CyberFrog : ScorebelObjeckt
         rig = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         rig.centerOfMass = Vector3.zero - Vector3.up * centerOffmaceOfset;
+        idelTrigerTimer = IdelTrigerTime;
+
+        istPos = transform.position;
+        isQuat = transform.rotation;
+
+        sollPos = AnimEndPunkt.position;
+        sollQuat = AnimEndPunkt.rotation;
     }
 
     private void Update()
     {
+        IdelTriger();
         CheckvorBalls();
 
         if(lastAtack + atackRate < Time.time)
@@ -51,9 +68,55 @@ public class CyberFrog : ScorebelObjeckt
             
         }
 
-
+        TravelOnCurv();
     }
 
+    public void AnableCyberFrog()
+    {
+        animatOnCurv = true;
+        Debug.Log("Enable");
+    }
+  
+    public void TravelOnCurv()
+    {
+        if (animatOnCurv)
+        {
+            t += Time.deltaTime * animSpeed;
+            transform.position = Vector3.Lerp(istPos, sollPos, t);
+            transform.position += Vector3.up * animationHeight.Evaluate(t);
+            transform.rotation = Quaternion.Lerp(isQuat,sollQuat, t);
+            Debug.Log(t);
+            if(t >= 1)
+            {
+                animatOnCurv = false;
+                t = 0;
+                EnableColider();
+            }
+
+        }
+    }
+
+    private void EnableColider()
+    {
+        foreach(var cild in GetComponents<Collider>())
+        {
+            cild.enabled = true;
+        }
+        rig.isKinematic = false;
+    }
+    private void IdelTriger()
+    {
+        idelTrigerTimer -= Time.deltaTime;
+        if(idelTrigerTimer <= 0)
+        {
+            int ran = Random.Range(1, 3);
+            anim.SetInteger("IdelTriger", ran);
+            Debug.Log(ran);
+            idelTrigerTimer = IdelTrigerTime;
+        }
+        else
+            anim.SetInteger("IdelTriger", 0);
+    }
     private void CheckvorBalls()
     {
         var balls = Physics.OverlapSphere(transform.position, AtensionRadius, ballLayer);
